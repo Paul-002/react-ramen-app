@@ -1,0 +1,14 @@
+.NavBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  background-color: blueviolet;
+}
+
+@media (max-width: 499px) {
+  .NavItems {
+      display: none;
+  }
+}

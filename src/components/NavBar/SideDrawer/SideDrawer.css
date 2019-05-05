@@ -1,0 +1,34 @@
+.SideDrawer {
+    width: 65%;
+    height: 100%;
+    background-color: white;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 200;
+    transition: transform 0.3s ease-out;
+}
+
+.Text {
+    padding: 20px;
+    border: 2px solid black;
+    margin: 2px;
+}
+
+.Text span {
+    font-size: 20px;
+}
+
+.CloseTheSideDrawerAnim {
+    transform: translateX(-100%);
+}
+
+.OpenTheSideDrawerAnim {
+    transform: translateX(0);
+}
+
+@media (min-width: 500px) {
+    .SideDrawer {
+        display: none;
+    }
+}

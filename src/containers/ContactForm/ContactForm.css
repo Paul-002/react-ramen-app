@@ -1,0 +1,25 @@
+.FormContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 30px;
+    width: 60%;
+   /* border: 1px solid black; */
+    background-color: rgb(235, 234, 234);
+    border-radius: 25px;
+    -webkit-box-shadow: 22px 28px 36px -13px rgba(133,125,133,1);
+    -moz-box-shadow: 22px 28px 36px -13px rgba(133,125,133,1);
+    box-shadow: 22px 28px 36px -13px rgba(133,125,133,1);
+}
+
+.FormHeader {
+    margin: 20px;
+    text-decoration: underline;
+}

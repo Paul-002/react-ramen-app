@@ -1,0 +1,9 @@
+.ButtonContainer {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.SubmitButton {
+    padding: 15px;
+}

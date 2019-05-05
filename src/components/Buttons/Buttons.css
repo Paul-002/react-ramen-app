@@ -1,0 +1,35 @@
+.ButtonConteiner {
+  display: flex;
+  flex-direction: row;
+  min-width: 310px;
+}
+
+.Button {
+  width: 150px;
+  height: 40px;
+}
+
+.Count {
+  width: 100px;
+  display: block;
+  text-align: center;
+  background-color: lightgray;
+}
+
+.Label {
+  width: 100px;
+  display: block;
+  text-align: center;
+}
+
+.Mushrooms {
+  background-color: red;
+}
+
+.Meat {
+  background-color: green;
+}
+
+.Other {
+  background-color: lightskyblue;
+}

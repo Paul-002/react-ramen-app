@@ -1,0 +1,27 @@
+.CheckoutContener {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.IngredientsList {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 300px;
+    max-width: 50%;
+    height: 400px;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.IngredientsList li {
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 30%;
+    list-style-type: none;
+    margin: 15px;
+}
+
+.IngredientsList li:hover {
+    background-color: #dddddd;
+}

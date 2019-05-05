@@ -1,0 +1,9 @@
+.TotalCostContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.ModalContainer {
+  display: flex;
+}

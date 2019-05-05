@@ -1,0 +1,31 @@
+.FormInput {
+  height: 40px;
+  margin-top: 20px;
+  padding-left: 10px; 
+	box-sizing: border-box;
+	border: 1px solid white;
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.FormInput:focus {
+    outline: none;
+    border: 1px solid lightseagreen;
+}
+
+.CheckboxLabel {
+	display: flex;
+	flex-direction: row;
+  margin-top: 20px;
+}
+
+.InputCheckbox {
+  height: 25px;
+	width: 25px;
+	margin-right: 10px;
+}
+
+.Invalid {
+    border: 1px solid rgba(255, 0, 0, 0.8);
+}
+

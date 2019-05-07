@@ -1,17 +1,38 @@
-  .NavItems {
+  .NavItems { /* style for sidedrawer <ul> container */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     list-style: none;
-    margin-top: 20px;
+    border: 2px solid black;
   }
 
-  @media (min-width: 500px) {
+  .LogoContainer { /* logo in desktop viev < 600*/
+    display: none;
+  }
+
+  @media (min-width: 600px) {
+    .LogoContainer { /* Remove Ramen icon from <ul> in sidedrawer */
+      display: block;
+      width: 50px;
+      height: 50px;
+      background-color: white;
+      padding: 5px;
+      border-radius: 15px;
+      margin-right: 40px;
+    }
+  }
+
+  @media (min-width: 480px) { /* style after breakpoint in 480 for navbar (display column => display row) */
     .NavItems { 
       flex-direction: row;
       justify-content: flex-end;
       align-items: center;
-      width: auto;
+      width: 100%;
+      height: 50px;
+      /*clear for desktop */
       margin-top: 0;
+      border: none;
     }
   }
+ 
+  

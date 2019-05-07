@@ -1,0 +1,12 @@
+import React from 'react';
+import ramen from '../../assets/ramen128.png';
+import classes from './Logo.css';
+
+
+const Logo = () => {
+	return (
+		<img src={ramen} alt="Ramen" className={classes.Logo} />
+	);
+}
+
+export default Logo;

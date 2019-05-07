@@ -15,7 +15,6 @@ const sideDrawer = (props) => {
   return (
     <Aux>
       <BackDrop show={props.show} clickedBackDrop={props.clickedBackDrop} />
-
       <div className={openOrClosed.join(' ')}>
         <div className={classes.Text}>
           <span> Create your own ramen! </span>

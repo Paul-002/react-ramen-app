@@ -22,8 +22,8 @@ class Layout extends Component {
   render() {
     return (
       <Aux>
-        <Navbar clickTheBurgerButton={this.showTheSideDrawer}></Navbar>
-        <SideDrawer show={this.state.SideDrawer} clickedBackDrop={this.clickedBackDrop}></SideDrawer>
+        <Navbar clickTheBurgerButton={this.showTheSideDrawer} />
+        <SideDrawer show={this.state.SideDrawer} clickedBackDrop={this.clickedBackDrop} />
       </Aux>
     );
   }

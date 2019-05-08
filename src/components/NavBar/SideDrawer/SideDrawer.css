@@ -1,34 +1,41 @@
 .SideDrawer {
-    width: 65%;
-    height: 100%;
-    background-color: white;
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    z-index: 200;
-    transition: transform 0.3s ease-out;
+  width: 60%;
+  height: 100%;
+  background-color: white;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 200;
+  border-top-right-radius: 20px;
+  transition: transform 0.3s ease-out;
 }
 
 .Text {
-    padding: 20px;
-    border: 2px solid black;
-    margin: 2px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 5px; /* margin for good looking border-bottom */
+  border-bottom: 1px solid black;
 }
 
 .Text span {
-    font-size: 20px;
+  font-size: 20px;
+}
+
+.NavItemsContainer { /* First container for navbar in sidedrawer second is <ul>  */
+  margin-top: 50px;
 }
 
 .CloseTheSideDrawerAnim {
-    transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 
 .OpenTheSideDrawerAnim {
-    transform: translateX(0);
+  transform: translateX(0);
 }
 
 @media (min-width: 480px) {
-    .SideDrawer {
-        display: none;
-    }
+  .SideDrawer {
+    display: none;
+  }
 }

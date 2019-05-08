@@ -3,15 +3,15 @@
     flex-direction: column;
     justify-content: flex-start;
     list-style: none;
-    border: 2px solid black;
+    padding: 5px; /* <ul> container */
   }
 
-  .LogoContainer { /* logo in desktop viev < 600*/
+  .LogoContainer { /* logo in desktop viev < 600 */
     display: none;
   }
 
   @media (min-width: 600px) {
-    .LogoContainer { /* Remove Ramen icon from <ul> in sidedrawer */
+    .LogoContainer { /*logo in navbar */
       display: block;
       width: 50px;
       height: 50px;

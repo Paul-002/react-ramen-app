@@ -17,9 +17,13 @@ const sideDrawer = (props) => {
       <BackDrop show={props.show} clickedBackDrop={props.clickedBackDrop} />
       <div className={openOrClosed.join(' ')}>
         <div className={classes.Text}>
-          <span> Create your own ramen! </span>
+          <span>Image</span>
+          <span>Name Surname</span>
+          <span>E-mail</span>
         </div>
-        <NavItems />
+        <nav className={classes.NavItemsContainer}>
+          <NavItems />
+        </nav>
       </div>
     </Aux>
   );

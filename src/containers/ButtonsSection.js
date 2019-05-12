@@ -1,7 +1,7 @@
 import React from "react";
 import Aux from "../hoc/auxiliary";
 import Buttons from "../components/Buttons/Buttons";
-//import { withRouter } from 'react-router-dom';
+import classes from "./ButtonsSection.css"
 
 const ingredients = [
   { name: "Chicken", type: "chicken", section: 'Meat' },
@@ -15,22 +15,24 @@ const ingredients = [
   { name: "Onion", type: "onion", section: 'Other' }
 ];
 
-
 const buttonsSection = props => (
   <Aux>
-    {ingredients.map(item => (
-      <Buttons
-        addCount={() => props.addCount(item.type)}
-        removeCount={() => props.removeCount(item.type)}
-        label={item.name}
-        key={item.name}
-        count={props.count[item.type]}
-        disabled={props.disabled[item.type]}
-        section={item.section}
-      >
-        {item.name}
-      </Buttons>
-    ))}
+    <div className={classes.ButtonSectionContainer}>
+      {ingredients.map(item => (
+        <Buttons
+          addCount={() => props.addCount(item.type)}
+          removeCount={() => props.removeCount(item.type)}
+          label={item.name}
+          key={item.name}
+          count={props.count[item.type]}
+          subDisabled={props.disabled[item.type].subButton} //minus button 
+          section={item.section}
+          addDisabled={props.disabled[item.type].addButton} //plus button
+        >
+          {item.name}
+        </Buttons>
+      ))}
+    </div>
   </Aux>
 );
 

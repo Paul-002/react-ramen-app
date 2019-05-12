@@ -181,7 +181,6 @@ class ContactForm extends Component {
     }
 
     id === 'email' ? isValid = /\S+@\S+\.\S+/.test(value) : isValid = value.trim() !== '' && value.length >= 2
-
     return isValid
   }
 
@@ -205,7 +204,7 @@ class ContactForm extends Component {
   }
 
   render() {
-    let message = 'Please enter your details below.'
+    let message = 'Please enter your details...'
     let configArray = [];
 
     for (let key in this.state.inputPattern) {      //to trzeba poprawić! wysłać obiekt a nie właściwości
@@ -230,9 +229,6 @@ class ContactForm extends Component {
         change={(event) => this.onChangeHandler(event, input.id)}>
       </Input>
     ))
-
-    console.log(configArray);
-
 
     if (this.state.loading) {
       form = <Spinner />

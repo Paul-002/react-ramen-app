@@ -89,8 +89,14 @@ class RamenBuilder extends Component {
   orderTheRamen = () => {
     this.setState({ showModal: false })
     const stateValues = [];
-    for (let i in this.state.ramen) {
-      stateValues.push(encodeURI(i) + '=' + encodeURI(this.state.ramen[i]))
+    const copyOfState = {
+      ...this.state.ramen
+    }
+
+    for (let i in copyOfState) {
+      if (copyOfState[i]) {
+        stateValues.push(encodeURI(i) + '=' + encodeURI(this.state.ramen[i]))
+      }
     }
     stateValues.push('price=' + this.state.totalPrice.toFixed(2));
 
@@ -102,15 +108,23 @@ class RamenBuilder extends Component {
   }
 
   render() {
+    const checkArray = [];
     const disabledButton = {
       ...this.state.ramen
     };
+
     for (let key in disabledButton) {
-      disabledButton[key] = disabledButton[key] <= 0
+      checkArray.push(disabledButton[key])
+      disabledButton[key] = {
+        addButton: disabledButton[key] >= 3,
+        subButton: disabledButton[key] <= 0,
+      }
     }
 
+    const disabledSubmitButton = checkArray.every(val => val === 0);
+
     let order = null;
-    let buttonSection = this.state.error ? <p> Oops... Somethig went wrong... :/</p> : <Spinner />;
+    let buttonSection = this.state.error ? <p> Oops... Somethig went wrong... :/</p> : <Spinner />; // when axios reaching ingredients from the server 
 
     if (this.state.ramen) {
       buttonSection =
@@ -124,7 +138,7 @@ class RamenBuilder extends Component {
             count={this.state.ramen}
             disabled={disabledButton}
           />
-          <SubmitButton showModal={this.changeModalViev} />
+          <SubmitButton disabled={disabledSubmitButton} showModal={this.changeModalViev} />
         </Aux>
 
       order =

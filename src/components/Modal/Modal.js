@@ -7,17 +7,15 @@ class Modal extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     return (nextProps.show !== this.props.show) // || (nextProps.children !== this.props.children)
-
   }
 
   componentWillUpdate() {
     console.log('modal will update');
   }
 
-
   render() {
     const modalAnimation = {
-      transform: this.props.show ? 'translate(0)' : 'translateY(-100vh)',
+      transform: this.props.show ? 'translateX(0)' : 'translateY(-100vh)',
       opacity: this.props.show ? '1' : '0'
     }
     return (

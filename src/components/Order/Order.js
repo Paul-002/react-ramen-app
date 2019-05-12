@@ -10,10 +10,10 @@ const order = (props) => {
 
 	return (
 		<div className={classes.OrderCard}>
-			<p>City: <b>{props.city}</b></p>
-			<p>Street: <b>{props.street}</b></p>
 			<p>Name: <b>{props.name} {props.surname}</b></p>
 			<p>E-mail: <b>{props.email}</b></p>
+			<p>Street: <b>{props.street}</b></p>
+			<p>City: <b>{props.city}</b></p>
 			<p>Total price: <b>{props.totalPrice}</b></p>
 			<p>Ingredients: {ingredientsList}</p>
 		</div>

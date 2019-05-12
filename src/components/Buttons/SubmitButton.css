@@ -1,9 +1,34 @@
 .ButtonContainer {
-    margin: 10px;
-    display: flex;
-    justify-content: center;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
 }
 
 .SubmitButton {
-    padding: 15px;
+	cursor: pointer;
+	width: 150px;
+	height: 60px;
+	padding: 10px;
+	font-size: 23px;
+	background-color: #84c00c;
+	border: none;	
+	border-radius: 5px;
+	color: #fff;
+	font-weight: bold;
+	box-shadow: 1px 1px 1px dimgray;
+	transition: 0.3s;
+}
+
+.SubmitButton:focus {
+	outline: none;
+}
+
+.SubmitButton:hover {
+  background-color: #669509;
+}
+
+.SubmitButton:disabled {
+  cursor: not-allowed;
+  background-color: #dbf99f;
+	color: #333;
 }

@@ -14,7 +14,6 @@ class MyOrders extends Component {
 
     axios.get('/order.json')
       .then(response => {
-        console.log(response);
         const fetchingData = [];
         for (let key in response.data) {
           fetchingData.push({
@@ -24,7 +23,7 @@ class MyOrders extends Component {
         }
         this.setState({ loading: false, myOrders: fetchingData })
       })
-      .catch(error => { alert(error) })
+      .catch(error => { alert("Something went wrong. Please back after few minutes...") })
   }
   render() {
 
@@ -32,14 +31,14 @@ class MyOrders extends Component {
       <div className={classes.OrdersCardContainer}>
         {this.state.myOrders.map(order => (
           <Order
-            city={order.contactInfo.city}
-            street={order.contactInfo.street}
-            email={order.contactInfo.email}
-            key={order.id}
             name={order.contactInfo.name}
             surname={order.contactInfo.surname}
+            email={order.contactInfo.email}
+            street={order.contactInfo.street}
+            city={order.contactInfo.city}
             totalPrice={order.totalPrice}
             ingredients={order.ingredients}
+            key={order.id}
           />
         ))}
       </div>

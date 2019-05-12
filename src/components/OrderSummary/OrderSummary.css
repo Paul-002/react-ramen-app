@@ -1,8 +1,39 @@
-li {
+.SingleList {
   padding: 5px;
-  margin-left: 20px;
+  margin-left: 15px;
 }
 
-.NumberOfIngredients {
+.ValueOnList {
   font-weight: bold;
+}
+
+.Heading {
+  border-bottom: 1px solid black;
+  padding: 0 0 10px 7%;
+}
+.LineTrough {
+  text-decoration: line-through;
+}
+
+.UlContainer {
+  padding: 10px 0 10px 7%;
+}
+
+.TotalCost {
+  padding: 0 0 10px 7%;
+  font-size: 20px;
+}
+
+.Price {
+  font-weight: bold;
+  margin-left: 5px;
+  border-bottom: 1px solid black;
+}
+
+.Buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  margin: 10px 0 0 0;
 }

@@ -1,24 +1,7 @@
-* {
-  padding: 0;
-  margin: 0;
-}
-
-p {
-  font-size: 20px;
-  padding: 10px;
-  margin-left: 20px;
-}
-
 .Sum {
-   color: blue;
-}
-
-.FreeDelivery {
-  color: red;
-}
-
-.LotOfIngredients {
+  color: white;
   font-size: 25px;
-  font-weight: bold;
+  padding: 10px;
+  border-bottom: 2px solid white;
 }
 

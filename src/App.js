@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router-dom';
 import Layout from './hoc/Layout/Layout'
 import MyOrders from "./containers/MyOrders/MyOrders";
 import classes from './App.css';
+// import 'normalize.css';
 
 class App extends Component {
   render() {

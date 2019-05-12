@@ -1,7 +1,13 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 .Background {
   background-image: url(./assets/background-ramen-50.jpg);
   background-repeat: no-repeat;
-  height: auto;
+  height: 100%;
+  overflow: hidden;
 }
 
 @media (min-width:320px)  { /*media queries to adjust and size background image */
@@ -18,6 +24,7 @@
 @media (min-width:600px)  { 
   .Background {
     background-position-x: -600px;
+
   }
 }
 
@@ -35,6 +42,7 @@
 
 @media (min-width:1281px) {
   .Background {
+
     background-position-x: 0px;
   }
 }

@@ -10,8 +10,7 @@ class MyOrders extends Component {
     loading: true
   }
 
-  componentDidMount() {
-
+  componentWillMount() {
     axios.get('/order.json')
       .then(response => {
         const fetchingData = [];
@@ -26,7 +25,6 @@ class MyOrders extends Component {
       .catch(error => { alert("Something went wrong. Please back after few minutes...") })
   }
   render() {
-
     let orderCard = (
       <div className={classes.OrdersCardContainer}>
         {this.state.myOrders.map(order => (
@@ -36,6 +34,7 @@ class MyOrders extends Component {
             email={order.contactInfo.email}
             street={order.contactInfo.street}
             city={order.contactInfo.city}
+            payment={order.contactInfo.cardPayment}
             totalPrice={order.totalPrice}
             ingredients={order.ingredients}
             key={order.id}

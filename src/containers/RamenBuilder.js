@@ -44,7 +44,7 @@ class RamenBuilder extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
+    // console.log(this.props);
     // axios.get('https://react-builder-9c971.firebaseio.com/ramen.json')
     //   .then(response => { this.setState({ ramen: response.data }) }).catch(error => { this.setState({ error: true }) })
     // this.props.history.push('/check-before-buy')

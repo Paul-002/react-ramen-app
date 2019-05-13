@@ -8,12 +8,16 @@ const order = (props) => {
 			.map(item => { return <li key={item}>{item} : <b>{props.ingredients[item]}</b></li> })
 	);
 
+	let trueOrFalse;
+	props.payment ? trueOrFalse = 'Yes' : trueOrFalse = 'No'
+
 	return (
 		<div className={classes.OrderCard}>
 			<p>Name: <b>{props.name} {props.surname}</b></p>
 			<p>E-mail: <b>{props.email}</b></p>
 			<p>Street: <b>{props.street}</b></p>
 			<p>City: <b>{props.city}</b></p>
+			<p>Card payment: <b>{trueOrFalse}</b></p>
 			<p>Total price: <b>{props.totalPrice}</b></p>
 			<p>Ingredients: {ingredientsList}</p>
 		</div>

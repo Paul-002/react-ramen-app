@@ -93,8 +93,8 @@ class ContactForm extends Component {
         }
       },
 
-      contactlessPayment: {
-        value: 'false',
+      cardPayment: {
+        value: false,
         inputSettings: {
           inputType: 'checkbox',
           type: 'checkbox',
@@ -192,12 +192,15 @@ class ContactForm extends Component {
     stateObjCopy[objName].validation.touch = true;
 
     let readyToSubmit = true;
+
     for (let objNames in stateObjCopy) {
       readyToSubmit = stateObjCopy[objNames].validation.valid && readyToSubmit;
     }
 
-    //  console.log(stateObjCopy[objName].validation.valid);  do sprawdzenia czy zmienia sie na true lub false
-    console.log(this.state.readyToSubmit)
+    if (objName === 'cardPayment') {
+      stateObjCopy[objName].value = event.target.checked
+    }
+
     this.setState({
       inputPattern: stateObjCopy, readyToSubmit: readyToSubmit
     })
@@ -207,7 +210,7 @@ class ContactForm extends Component {
     let message = 'Please enter your details...'
     let configArray = [];
 
-    for (let key in this.state.inputPattern) {      //to trzeba poprawić! wysłać obiekt a nie właściwości
+    for (let key in this.state.inputPattern) {
       configArray.push({
         id: key,
         value: this.state.inputPattern[key].value,

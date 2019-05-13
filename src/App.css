@@ -24,13 +24,12 @@
 @media (min-width:600px)  { 
   .Background {
     background-position-x: -600px;
-
   }
 }
 
 @media (min-width:801px)  { 
   .Background {
-   background-position-x: -500px;
+    background-position-x: -500px;
   }
 }
 
@@ -42,7 +41,6 @@
 
 @media (min-width:1281px) {
   .Background {
-
     background-position-x: 0px;
   }
 }

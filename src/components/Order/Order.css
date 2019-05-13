@@ -10,3 +10,25 @@
 	box-shadow: 2px 2px 2px dimgray
 }
 
+.OrderCard p {
+	padding: 5px;
+}
+
+.OrderCard p:last-child {
+	border-top: 1px solid black;
+}
+
+.OrderCard li {
+	list-style-type: none;
+	padding: 2px;
+}
+
+.OrderCard li:before {
+	content: '\2713';
+	margin: 0 1em;
+	font-weight: bold;
+}
+
+.OrderCard p b{
+	margin-left: 5px;
+}

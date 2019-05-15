@@ -61,7 +61,7 @@ class MyOrders extends Component {
         <div className={classes.OrdersCardContainer}>
           <div className={classes.EmptyOrderCard}>
             <h1>There is no orders yet :(</h1>
-            <h5>Go to the Homepage for create your favorite ramen!</h5>
+            <h5>Go to the Homepage for create your favorite ramen! </h5>
           </div>
         </div>
       )

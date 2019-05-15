@@ -235,7 +235,7 @@ class ContactForm extends Component {
 
     if (this.state.loading) {
       form = <Spinner />
-      message = 'Order sent, check yours orders in "My orders"'
+      message = 'Order sent! Check all of your orders in bookmark "My orders"'
     }
 
     return (

@@ -27,7 +27,7 @@ class MyOrders extends Component {
         }
         this.setState({ loading: false, myOrders: fetchingData })
       })
-      .catch(error => { alert("There is something with the connection, please back later...") })
+      .catch(error => { alert("There is something with the connection, please back after few minutes...") })
   }
   render() {
     let orderCard;

@@ -8,9 +8,9 @@ import SubmitButton from '../components/Buttons/SubmitButton'
 import Modal from '../components/Modal/Modal'
 import OrderSummary from '../components/OrderSummary/OrderSummary'
 //import Layout from '../hoc/Layout/Layout'
-import axios from '../axiosInstance.js'
+//import axios from '../axiosInstance.js'
 import Spinner from "../components/Spinner/Spinner";
-import errorHandler from "../hoc/errorHandler";
+//import errorHandler from "../hoc/errorHandler";
 
 const RAMEN_PRICES = {
   chicken: 5,
@@ -172,4 +172,4 @@ class RamenBuilder extends Component {
   }
 }
 
-export default errorHandler(RamenBuilder, axios);
+export default RamenBuilder

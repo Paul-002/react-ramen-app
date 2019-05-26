@@ -132,6 +132,10 @@ class ContactForm extends Component {
       .then(response => {
         this.setState({ loading: false })
         this.props.history.push('/')
+      })
+      .catch(error => {
+        alert('Something went wrong. Please check your internet connection and back after few minutes...')
+        this.props.history.push('/')
       });
   }
   /* first solution for complex inputs
@@ -235,7 +239,7 @@ class ContactForm extends Component {
 
     if (this.state.loading) {
       form = <Spinner />
-      message = 'Order sent! Check all of your orders in bookmark "My orders"'
+      message = 'Order sent! Check all of your orders on page "My orders"'
     }
 
     return (

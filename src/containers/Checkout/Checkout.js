@@ -5,26 +5,11 @@ import Button from '../../components/Buttons/Button'
 import Aux from '../../hoc/auxiliary'
 import ContactForm from '../ContactForm/ContactForm';
 
+//redux
+import { connect } from 'react-redux';
+
+
 class Checkout extends Component {
-  state = {
-    ingredients: null,
-    totalPrice: 0
-  }
-
-  componentWillMount() {
-    const query = new URLSearchParams(this.props.location.search);
-    const ingredients = {};
-    let price = 0;
-
-    for (let param of query.entries()) {
-      if (param[0] === 'price') {
-        price = param[1];
-      } else {
-        ingredients[param[0]] = +param[1];
-      }
-    }
-    this.setState({ ingredients: ingredients, totalPrice: price });
-  }
 
   backViev = () => {
     this.props.history.goBack();
@@ -35,13 +20,17 @@ class Checkout extends Component {
   }
 
   render() {
-    const ingredientsList = Object.keys(this.state.ingredients)
+    const ingredientsList = Object.keys(this.props.ramen)
       .map(item => {
-        return (
-          <li
-            className={classes.LiItem} key={item}>{item} : <span className={classes.SpanItem}>{this.state.ingredients[item]}</span>
-          </li>
-        )
+        if (this.props.ramen[item] === 0) { //preventing from display 0 value
+          return false
+        } else {
+          return (
+            <li
+              className={classes.LiItem} key={item}>{item} : <span className={classes.SpanItem}>{this.props.ramen[item]}</span>
+            </li>
+          )
+        };
       });
 
     return (
@@ -66,10 +55,24 @@ class Checkout extends Component {
           <p><Button clicked={this.goForm} btn='Continue'>Show me form!</Button></p>
         </div>
         <Route path={this.props.match.path + '/go-form'}
-          render={(props) => (<ContactForm checkoutState={this.state.ingredients} totalPrice={this.state.totalPrice} {...props} />)}></Route>
+          component={ContactForm} />
       </Aux>
     );
   }
 }
 
-export default Checkout;
+const mapStateToProps = (state) => {
+  return {
+    ramen: state.ramen,
+    totalPrice: state.totalPrice.price
+  }
+}
+/*
+const mapDispatchToProps = dispatch => {
+  return {
+    //  addCountHandler: (e) =>
+    //  dispatch({ type: actionTypes.ADD, value: 1, typeOfIngredient: e }),
+  }
+}
+*/
+export default connect(mapStateToProps)(Checkout);

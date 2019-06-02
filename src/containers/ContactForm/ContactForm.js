@@ -5,6 +5,9 @@ import axios from '../../axiosInstance'
 import Spinner from '../../components/Spinner/Spinner';
 import Input from '../../components/Input/Input';
 
+//redux
+import { connect } from 'react-redux'
+
 class ContactForm extends Component {
   state = {
     inputPattern: {
@@ -200,11 +203,9 @@ class ContactForm extends Component {
     for (let objNames in stateObjCopy) {
       readyToSubmit = stateObjCopy[objNames].validation.valid && readyToSubmit;
     }
-
     if (objName === 'cardPayment') {
       stateObjCopy[objName].value = event.target.checked
     }
-
     this.setState({
       inputPattern: stateObjCopy, readyToSubmit: readyToSubmit
     })
@@ -254,4 +255,11 @@ class ContactForm extends Component {
   }
 }
 
-export default ContactForm;
+const mapStateToProps = (state) => {
+  return {
+    ramen: state.ramen,
+    totalPrice: state.totalPrice.price
+  }
+}
+
+export default connect(mapStateToProps)(ContactForm);

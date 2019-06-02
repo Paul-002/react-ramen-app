@@ -12,6 +12,10 @@ import OrderSummary from '../components/OrderSummary/OrderSummary'
 import Spinner from "../components/Spinner/Spinner";
 //import errorHandler from "../hoc/errorHandler";
 
+//redux
+import { connect } from 'react-redux';
+import * as actionTypes from '../store/actions';
+
 const RAMEN_PRICES = {
   chicken: 5,
   duck: 4,
@@ -26,18 +30,6 @@ const RAMEN_PRICES = {
 
 class RamenBuilder extends Component {
   state = {
-    ramen: {
-      chicken: 0,
-      duck: 0,
-      pork: 0,
-      wakame: 0,
-      egg: 0,
-      onion: 0,
-      mun: 0,
-      shiitake: 0,
-      reishi: 0
-    },
-    totalPrice: 4,
     showModal: false,
     spinner: false,
     error: false,
@@ -51,33 +43,6 @@ class RamenBuilder extends Component {
 
   }
 
-  addCountHandler = e => {
-    const oldCount = this.state.ramen[e];
-    const updatedIngredients = {
-      ...this.state.ramen
-    };
-    updatedIngredients[e] = oldCount + 1;
-    this.setState({ ramen: updatedIngredients });
-
-    const priceAdd = this.state.totalPrice + RAMEN_PRICES[e];
-    this.setState({ totalPrice: priceAdd })
-  };
-
-  removeCountHandler = e => {
-    const oldCount = this.state.ramen[e];
-    if (oldCount <= 0) {
-      return
-    };
-    const updatedIngredients = {
-      ...this.state.ramen
-    };
-    updatedIngredients[e] = oldCount - 1;
-    this.setState({ ramen: updatedIngredients });
-
-    const priceSubtract = (this.state.totalPrice) - RAMEN_PRICES[e];
-    this.setState({ totalPrice: priceSubtract })
-  };
-
   changeModalViev = () => {
     this.setState({ showModal: true });
   }
@@ -88,36 +53,23 @@ class RamenBuilder extends Component {
 
   orderTheRamen = () => {
     this.setState({ showModal: false })
-    const stateValues = [];
-    const copyOfState = {
-      ...this.state.ramen
-    }
 
-    for (let i in copyOfState) {
-      if (copyOfState[i]) {
-        stateValues.push(encodeURI(i) + '=' + encodeURI(this.state.ramen[i]))
-      }
-    }
-    stateValues.push('price=' + this.state.totalPrice.toFixed(2));
-
-    const stateString = stateValues.join('&');
     this.props.history.push({
       pathname: '/check-before-buy',
-      search: '?' + stateString
     })
   }
 
   render() {
     const checkArray = [];
     const disabledButton = {
-      ...this.state.ramen
+      ...this.props.ramen
     };
 
     for (let key in disabledButton) {
       checkArray.push(disabledButton[key])
       disabledButton[key] = {
+        subButton: disabledButton[key] === 0, // initial prevent 
         addButton: disabledButton[key] >= 3,
-        subButton: disabledButton[key] <= 0,
       }
     }
 
@@ -126,29 +78,29 @@ class RamenBuilder extends Component {
     let order = null;
     let buttonSection = this.state.error ? <p> Oops... Somethig went wrong... :/</p> : <Spinner />; // when axios reaching ingredients from the server 
 
-    if (this.state.ramen) {
-      buttonSection =
-        <Aux>
-          <div className={classes.TotalCostContainer}>
-            <TotalCost totalPrice={this.state.totalPrice}></TotalCost>
-          </div>
-          <ButtonsSection
-            addCount={this.addCountHandler}
-            removeCount={this.removeCountHandler}
-            count={this.state.ramen}
-            disabled={disabledButton}
-          />
-          <SubmitButton disabled={disabledSubmitButton} showModal={this.changeModalViev} />
-        </Aux>
-
-      order =
-        <OrderSummary
-          ingredientsList={this.state.ramen}
-          hideTheModal={this.changeBackDropViev}
-          orderTheRamen={this.orderTheRamen}
-          totalPrice={this.state.totalPrice}
+    // if (this.state.ramen) { //get method from axios
+    buttonSection =
+      <Aux>
+        <div className={classes.TotalCostContainer}>
+          <TotalCost totalPrice={this.props.totalPrice}></TotalCost>
+        </div>
+        <ButtonsSection
+          addCount={(e) => { this.props.addCountHandler(e); this.props.addTotalPriceHandler(e) }}
+          removeCount={(e) => { this.props.subCountHandler(e); this.props.subTotalPriceHandler(e) }}
+          count={this.props.ramen}
+          disabled={disabledButton}
         />
-    }
+        <SubmitButton disabled={disabledSubmitButton} showModal={this.changeModalViev} />
+      </Aux>
+
+    order =
+      <OrderSummary
+        ingredientsList={this.props.ramen}
+        hideTheModal={this.changeBackDropViev}
+        orderTheRamen={this.orderTheRamen}
+        totalPrice={this.props.totalPrice}
+      />
+    //  }
 
     if (this.state.spinner) {
       order = <Spinner>Loading...</Spinner>
@@ -172,4 +124,28 @@ class RamenBuilder extends Component {
   }
 }
 
-export default RamenBuilder
+const mapStateToProps = (state) => {
+  return {
+    ramen: state.ramen,
+    totalPrice: state.totalPrice.price
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    addCountHandler: (e) =>
+      dispatch({ type: actionTypes.ADD, value: 1, typeOfIngredient: e }),
+
+    subCountHandler: (e) =>
+      dispatch({ type: actionTypes.SUB, value: 1, typeOfIngredient: e }),
+
+    addTotalPriceHandler: (e) =>
+      dispatch({ type: actionTypes.ADD_TOTAL_PRICE, value: RAMEN_PRICES[e] }),
+
+    subTotalPriceHandler: (e) =>
+      dispatch({ type: actionTypes.SUB_TOTAL_PRICE, value: RAMEN_PRICES[e], }),
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RamenBuilder)

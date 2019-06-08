@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions';
+import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
   ramen: {
@@ -36,7 +36,6 @@ const reducer = (state = initialState, action) => {
         },
       }
     case actionTypes.ADD_TOTAL_PRICE:
-      console.log(action.value)
       return {
         ...state,
         totalPrice: {

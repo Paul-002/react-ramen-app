@@ -14,7 +14,7 @@ import Spinner from "../components/Spinner/Spinner";
 
 //redux
 import { connect } from 'react-redux';
-import * as actionTypes from '../store/actions';
+import * as actionCreators from '../store/actions/actionCreators';
 
 const RAMEN_PRICES = {
   chicken: 5,
@@ -133,17 +133,17 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addCountHandler: (e) =>
-      dispatch({ type: actionTypes.ADD, value: 1, typeOfIngredient: e }),
+    addCountHandler: (evt) =>
+      dispatch(actionCreators.add(1, evt)),
 
-    subCountHandler: (e) =>
-      dispatch({ type: actionTypes.SUB, value: 1, typeOfIngredient: e }),
+    subCountHandler: (evt) =>
+      dispatch(actionCreators.sub(1, evt)),
 
-    addTotalPriceHandler: (e) =>
-      dispatch({ type: actionTypes.ADD_TOTAL_PRICE, value: RAMEN_PRICES[e] }),
+    addTotalPriceHandler: (evt) =>
+      dispatch(actionCreators.addTotalPrice(RAMEN_PRICES[evt])),
 
-    subTotalPriceHandler: (e) =>
-      dispatch({ type: actionTypes.SUB_TOTAL_PRICE, value: RAMEN_PRICES[e], }),
+    subTotalPriceHandler: (evt) =>
+      dispatch(actionCreators.subTotalPrice(RAMEN_PRICES[evt])),
 
   }
 }

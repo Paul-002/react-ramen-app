@@ -32,18 +32,14 @@ class RamenBuilder extends Component {
   state = {
     showModal: false,
     spinner: false,
-    error: false,
   };
 
   componentDidMount() {
-    // console.log(this.props);
-    // axios.get('https://react-builder-9c971.firebaseio.com/ramen.json')
-    //   .then(response => { this.setState({ ramen: response.data }) }).catch(error => { this.setState({ error: true }) })
-    // this.props.history.push('/check-before-buy')
-
+    this.props.axiosGetIngredientsHandler()
   }
 
-  changeModalViev = () => {
+  changeModalVievAndClearResponse = () => {
+
     this.setState({ showModal: true });
   }
 
@@ -53,54 +49,63 @@ class RamenBuilder extends Component {
 
   orderTheRamen = () => {
     this.setState({ showModal: false })
-
     this.props.history.push({
       pathname: '/check-before-buy',
     })
   }
 
   render() {
-    const checkArray = [];
-    const disabledButton = {
-      ...this.props.ramen
-    };
+    let order = null;
+    let buttonSection = null;
 
-    for (let key in disabledButton) {
-      checkArray.push(disabledButton[key])
-      disabledButton[key] = {
-        subButton: disabledButton[key] === 0, // initial prevent 
-        addButton: disabledButton[key] >= 3,
-      }
+    if (this.props.error) {
+      buttonSection =
+        <p className={classes.MessageError}>
+          Whoops! Sorry, something went wrong. <br /> Please come back in a few minutes and try again.
+        </p>
+
+    } else {
+      buttonSection = <Spinner /> // when axios reaching ingredients from the server
     }
 
-    const disabledSubmitButton = checkArray.every(val => val === 0);
+    if (this.props.ramen) { //get method from axios
+      const checkArray = [];
+      const disabledButton = {
+        ...this.props.ramen
+      };
 
-    let order = null;
-    let buttonSection = this.state.error ? <p> Oops... Somethig went wrong... :/</p> : <Spinner />; // when axios reaching ingredients from the server 
+      for (let key in disabledButton) {
+        checkArray.push(disabledButton[key])
+        disabledButton[key] = {
+          subButton: disabledButton[key] === 0, // initial prevent
+          addButton: disabledButton[key] >= 3,
+        }
+      }
 
-    // if (this.state.ramen) { //get method from axios
-    buttonSection =
-      <Aux>
-        <div className={classes.TotalCostContainer}>
-          <TotalCost totalPrice={this.props.totalPrice}></TotalCost>
-        </div>
-        <ButtonsSection
-          addCount={(e) => { this.props.addCountHandler(e); this.props.addTotalPriceHandler(e) }}
-          removeCount={(e) => { this.props.subCountHandler(e); this.props.subTotalPriceHandler(e) }}
-          count={this.props.ramen}
-          disabled={disabledButton}
+      const disabledSubmitButton = checkArray.every(val => val === 0);
+
+      buttonSection =
+        <Aux>
+          <div className={classes.TotalCostContainer}>
+            <TotalCost totalPrice={this.props.totalPrice} />
+          </div>
+          <ButtonsSection
+            addCount={(e) => { this.props.addCountHandler(e); this.props.addTotalPriceHandler(e) }}
+            removeCount={(e) => { this.props.subCountHandler(e); this.props.subTotalPriceHandler(e) }}
+            count={this.props.ramen}
+            disabled={disabledButton}
+          />
+          <SubmitButton disabled={disabledSubmitButton} showModal={this.changeModalVievAndClearResponse} />
+        </Aux>
+
+      order =
+        <OrderSummary
+          ingredientsList={this.props.ramen}
+          hideTheModal={this.changeBackDropViev}
+          orderTheRamen={this.orderTheRamen}
+          totalPrice={this.props.totalPrice}
         />
-        <SubmitButton disabled={disabledSubmitButton} showModal={this.changeModalViev} />
-      </Aux>
-
-    order =
-      <OrderSummary
-        ingredientsList={this.props.ramen}
-        hideTheModal={this.changeBackDropViev}
-        orderTheRamen={this.orderTheRamen}
-        totalPrice={this.props.totalPrice}
-      />
-    //  }
+    }
 
     if (this.state.spinner) {
       order = <Spinner>Loading...</Spinner>
@@ -114,11 +119,6 @@ class RamenBuilder extends Component {
           {order}
         </Modal>
         {buttonSection}
-        {/* 
-        <Route path='/home' component={Checkout}></Route>
-        <Route path='/compose-your-ramen' component={Checkout}></Route>
-        <Route path='/idenify' component={Checkout}></Route>
-         */}
       </Aux>
     );
   }
@@ -126,8 +126,9 @@ class RamenBuilder extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ramen: state.ramen,
-    totalPrice: state.totalPrice.price
+    ramen: state.ramenData.ramen,
+    totalPrice: state.ramenData.totalPrice,
+    error: state.ramenData.error
   }
 }
 
@@ -145,6 +146,8 @@ const mapDispatchToProps = dispatch => {
     subTotalPriceHandler: (evt) =>
       dispatch(actionCreators.subTotalPrice(RAMEN_PRICES[evt])),
 
+    axiosGetIngredientsHandler: () =>
+      dispatch(actionCreators.axiosGetIngredients())
   }
 }
 

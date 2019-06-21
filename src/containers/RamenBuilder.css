@@ -5,12 +5,9 @@
   margin-left: 7%;
 }
 
-.Siema h1 {
-  width: 300px;
-  height: 50px;
-}
-
-.Siema button {
-  width: 100px;
-  height: 60px;
+.MessageError {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 30px 30px 50px 15px;
 }

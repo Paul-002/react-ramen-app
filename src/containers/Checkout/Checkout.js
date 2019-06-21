@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import classes from './Checkout.css'
 import Button from '../../components/Buttons/Button'
 import Aux from '../../hoc/auxiliary'
@@ -7,31 +7,37 @@ import ContactForm from '../ContactForm/ContactForm';
 
 //redux
 import { connect } from 'react-redux';
+import * as actionCreators from '../../store/actions/actionCreators'
 
 
 class Checkout extends Component {
 
-  backViev = () => {
-    this.props.history.goBack();
-  }
+  backViev = () => { this.props.history.goBack() }
 
-  goForm = () => {
-    this.props.history.replace('/check-before-buy/go-form')
-  }
+  goForm = () => { this.props.history.replace('/check-before-buy/go-form') }
 
   render() {
-    const ingredientsList = Object.keys(this.props.ramen)
-      .map(item => {
-        if (this.props.ramen[item] === 0) { //preventing from display 0 value
-          return false
-        } else {
-          return (
-            <li
-              className={classes.LiItem} key={item}>{item} : <span className={classes.SpanItem}>{this.props.ramen[item]}</span>
-            </li>
-          )
-        };
-      });
+    let ingredientsList = <Redirect to="/" />
+
+    if (this.props.ramen) {
+      ingredientsList = Object.keys(this.props.ramen)
+        .map(item => {
+          if (this.props.ramen[item] === 0) {
+            return false
+          } else {
+            return (
+              <li
+                className={classes.LiItem} key={item}>{item} : <span className={classes.SpanItem}>{this.props.ramen[item]}</span>
+              </li>
+            )
+          };
+        });
+    }
+
+    if (this.props.response) {
+      this.props.clearStatus()
+      ingredientsList = <Redirect to="/" />
+    }
 
     return (
       <Aux>
@@ -63,16 +69,16 @@ class Checkout extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ramen: state.ramen,
-    totalPrice: state.totalPrice.price
+    ramen: state.ramenData.ramen,
+    response: state.orderData.response
   }
 }
-/*
+
 const mapDispatchToProps = dispatch => {
   return {
-    //  addCountHandler: (e) =>
-    //  dispatch({ type: actionTypes.ADD, value: 1, typeOfIngredient: e }),
+    clearStatus: () =>
+      dispatch(actionCreators.clearResponseStatus()),
   }
 }
-*/
-export default connect(mapStateToProps)(Checkout);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

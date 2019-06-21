@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import classes from './ContactForm.css'
 import Button from '../../components/Buttons/Button';
-import axios from '../../axiosInstance'
 import Spinner from '../../components/Spinner/Spinner';
 import Input from '../../components/Input/Input';
 
 //redux
 import { connect } from 'react-redux'
+import * as actionCreators from '../../store/actions/actionCreators'
 
 class ContactForm extends Component {
   state = {
@@ -112,34 +112,25 @@ class ContactForm extends Component {
         }
       },
     },
-    readyToSubmit: false,
-    loading: false
+    readyToSubmit: false // state validation
   }
 
-  submitButton = (event) => {
-    event.preventDefault();
-    this.setState({ loading: true })
-    let stateValues = {};
+  submitButton = (evt) => {
+    evt.preventDefault();
+    this.props.changeLoadingVal();
+    const stateValues = {};
 
     for (let key in this.state.inputPattern) {
       stateValues[key] = this.state.inputPattern[key].value
     }
 
     let contact = {
-      ingredients: this.props.checkoutState,
+      ingredients: this.props.ramen,
       totalPrice: this.props.totalPrice,
       contactInfo: stateValues
     }
 
-    axios.post('/order.json', contact)
-      .then(response => {
-        this.setState({ loading: false })
-        this.props.history.push('/')
-      })
-      .catch(error => {
-        alert('Something went wrong. Please check your internet connection and back after few minutes...')
-        this.props.history.push('/')
-      });
+    this.props.axiosPostOrderHandler(contact);
   }
   /* first solution for complex inputs
   
@@ -191,28 +182,29 @@ class ContactForm extends Component {
     return isValid
   }
 
-  onChangeHandler = (event, objName) => {
-    let stateObjCopy = JSON.parse(JSON.stringify(this.state.inputPattern));
+  onChangeHandler = (evt, objName) => {
+    let stateObjCopy = JSON.parse(JSON.stringify(this.state.inputPattern)); //obj deep clone
+    let readyToSubmit = true;
 
-    stateObjCopy[objName].value = event.target.value;
+    stateObjCopy[objName].value = evt.target.value;
     stateObjCopy[objName].validation.valid = this.checkForValidity(stateObjCopy[objName].value, stateObjCopy[objName].validation.isRequired, objName)
     stateObjCopy[objName].validation.touch = true;
-
-    let readyToSubmit = true;
 
     for (let objNames in stateObjCopy) {
       readyToSubmit = stateObjCopy[objNames].validation.valid && readyToSubmit;
     }
+
     if (objName === 'cardPayment') {
-      stateObjCopy[objName].value = event.target.checked
+      stateObjCopy[objName].value = evt.target.checked
     }
+
     this.setState({
       inputPattern: stateObjCopy, readyToSubmit: readyToSubmit
     })
   }
 
   render() {
-    let message = 'Please enter your details...'
+    let message = <h4 className={classes.FormHeader}>Please enter your details...</h4>;
     let configArray = [];
 
     for (let key in this.state.inputPattern) {
@@ -234,22 +226,28 @@ class ContactForm extends Component {
         label={input.inputLabel.label}
         valid={!input.validation.valid}
         touch={input.validation.touch}
-        change={(event) => this.onChangeHandler(event, input.id)}>
+        change={(evt) => this.onChangeHandler(evt, input.id)}>
       </Input>
     ))
 
-    if (this.state.loading) {
+    let subButton =
+      <Button clicked={this.submitButton} disabled={!this.state.readyToSubmit} btn='SubmitButton'>
+        Order now!
+      </Button>
+
+    if (this.props.loading) {
       form = <Spinner />
-      message = 'Order sent! Check all of your orders on page "My orders"'
+      message = <div style={{ display: 'none' }}> </div>
+      subButton = ''
     }
 
     return (
       <div className={classes.FormContainer}>
-        <h4 className={classes.FormHeader}>{message}</h4>
+        {message}
         <form className={classes.Form}>
           {form}
-          <Button clicked={this.submitButton} disabled={!this.state.readyToSubmit} btn='SubmitButton'>Order now!</Button>
-        </form >
+          {subButton}
+        </form>
       </div>
     );
   }
@@ -257,9 +255,23 @@ class ContactForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ramen: state.ramen,
-    totalPrice: state.totalPrice.price
+    ramen: state.ramenData.ramen,
+    totalPrice: state.ramenData.totalPrice,
+    error: state.orderData.error,
+    loading: state.orderData.loading,
+    response: state.orderData.response
   }
 }
 
-export default connect(mapStateToProps)(ContactForm);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    axiosPostOrderHandler: (contact) => {
+      dispatch(actionCreators.axiosPostOrder(contact))
+    },
+
+    changeLoadingVal: () =>
+      dispatch(actionCreators.changeLoadingVal()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

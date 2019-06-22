@@ -34,8 +34,7 @@ export const subTotalPrice = (price) => {
 export const setAxiosIngredients = (response) => {    //get ingredients
   return {
     type: actionTypes.SET_INGREDIENTS,
-    fetchedIngredients: response,
-    price: 15.20
+    fetchedIngredients: response
   }
 };
 
@@ -60,17 +59,32 @@ export const postFail = (error) => {     //fail order
   }
 };
 
+export const getOrderCardsSucess = (response) => {     //get order cards
+  return {
+    type: actionTypes.FETCHING_ORDERS,
+    response: response
+    //reducer change loading to true
+  }
+};
+
+export const getOrderCardsFail = (error) => {     //fail order cards
+  return {
+    type: actionTypes.FETCHING_ORDERS_FAIL,
+    error: error
+  }
+};
+
 export const changeLoadingVal = () => {
   return {
     type: actionTypes.CHANGE_LOADING_VAL,
-    loading: true
+    //reducer change loading to true
   }
 };
 
 export const clearResponseStatus = () => {
   return {
     type: actionTypes.CLEAR_RESPONSE_STATUS,
-    response: null
+    //reducer change response to null
   }
 };
 
@@ -97,3 +111,15 @@ export const axiosPostOrder = (contact) => {
       });
   }
 };
+
+export const axiosGetOrderCards = () => {
+  return dispatch => {
+    axios.get('/order.json')
+      .then(response => {
+        dispatch(getOrderCardsSucess(response))
+      })
+      .catch(error => {
+        dispatch(getOrderCardsFail(true))  //fix that
+      })
+  }
+}

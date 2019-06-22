@@ -5,7 +5,9 @@ const order = (props) => {
 
 	let ingredientsList = (
 		Object.keys(props.ingredients)
-			.map(item => { return <li key={item}>{item} : <b>{props.ingredients[item]}</b></li> })
+			.map(item => {
+				return props.ingredients[item] ? <li key={item}>{item} : <b>{props.ingredients[item]}</b></li> : null
+			})
 	);
 
 	let trueOrFalse;

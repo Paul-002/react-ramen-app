@@ -42,7 +42,7 @@ const ramenReducer = (state = initialState, action) => {
       return {
         ...state,
         ramen: action.fetchedIngredients,
-        totalPrice: action.price
+        totalPrice: 15.20
       }
 
     case actionTypes.ERROR_INGREDIENTS:

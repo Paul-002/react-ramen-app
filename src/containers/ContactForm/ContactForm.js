@@ -124,8 +124,8 @@ class ContactForm extends Component {
       stateValues[key] = this.state.inputPattern[key].value
     }
 
-    let contact = {
-      ingredients: this.props.ramen,
+    const contact = {
+      ingredients: this.props.ramen, // prevent 0, fix it
       totalPrice: this.props.totalPrice,
       contactInfo: stateValues
     }
@@ -183,7 +183,7 @@ class ContactForm extends Component {
   }
 
   onChangeHandler = (evt, objName) => {
-    let stateObjCopy = JSON.parse(JSON.stringify(this.state.inputPattern)); //obj deep clone
+    const stateObjCopy = JSON.parse(JSON.stringify(this.state.inputPattern)); //obj deep clone
     let readyToSubmit = true;
 
     stateObjCopy[objName].value = evt.target.value;
@@ -205,7 +205,7 @@ class ContactForm extends Component {
 
   render() {
     let message = <h4 className={classes.FormHeader}>Please enter your details...</h4>;
-    let configArray = [];
+    const configArray = [];
 
     for (let key in this.state.inputPattern) {
       configArray.push({

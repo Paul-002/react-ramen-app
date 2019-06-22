@@ -1,15 +1,13 @@
 import React, { Component } from "react";
-// import NavBar from "../components/NavBar/NavBar";
 import Aux from "../hoc/auxiliary";
 import classes from './RamenBuilder.css';
 import ButtonsSection from "./ButtonsSection";
-import TotalCost from '../components/TotalCost/TotalCost'
-import SubmitButton from '../components/Buttons/SubmitButton'
-import Modal from '../components/Modal/Modal'
-import OrderSummary from '../components/OrderSummary/OrderSummary'
-//import Layout from '../hoc/Layout/Layout'
-//import axios from '../axiosInstance.js'
+import TotalCost from '../components/TotalCost/TotalCost';
+import SubmitButton from '../components/Buttons/SubmitButton';
+import Modal from '../components/Modal/Modal';
+import OrderSummary from '../components/OrderSummary/OrderSummary';
 import Spinner from "../components/Spinner/Spinner";
+import ErrorMessage from '../components/ErrorLoadingMessage/ErrorMessage';
 //import errorHandler from "../hoc/errorHandler";
 
 //redux
@@ -31,21 +29,15 @@ const RAMEN_PRICES = {
 class RamenBuilder extends Component {
   state = {
     showModal: false,
-    spinner: false,
   };
 
   componentDidMount() {
     this.props.axiosGetIngredientsHandler()
   }
 
-  changeModalVievAndClearResponse = () => {
+  changeModalVievAndClearResponse = () => { this.setState({ showModal: true }) }
 
-    this.setState({ showModal: true });
-  }
-
-  changeBackDropViev = () => {
-    this.setState({ showModal: false });
-  }
+  changeBackDropViev = () => { this.setState({ showModal: false }) }
 
   orderTheRamen = () => {
     this.setState({ showModal: false })
@@ -56,19 +48,13 @@ class RamenBuilder extends Component {
 
   render() {
     let order = null;
-    let buttonSection = null;
+    let buttonSection = <Spinner />;
 
     if (this.props.error) {
-      buttonSection =
-        <p className={classes.MessageError}>
-          Whoops! Sorry, something went wrong. <br /> Please come back in a few minutes and try again.
-        </p>
-
-    } else {
-      buttonSection = <Spinner /> // when axios reaching ingredients from the server
+      buttonSection = <ErrorMessage />
     }
 
-    if (this.props.ramen) { //get method from axios
+    if (this.props.ramen) {
       const checkArray = [];
       const disabledButton = {
         ...this.props.ramen
@@ -106,10 +92,6 @@ class RamenBuilder extends Component {
           totalPrice={this.props.totalPrice}
         />
     }
-
-    if (this.state.spinner) {
-      order = <Spinner>Loading...</Spinner>
-    };
 
     return (
       <Aux>

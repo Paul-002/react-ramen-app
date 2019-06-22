@@ -1,41 +1,40 @@
 import React, { Component } from 'react';
-import axios from '../../axiosInstance'
 import Order from '../../components/Order/Order';
 import Spinner from '../../components/Spinner/Spinner';
 import classes from './MyOrders.css';
+import ErrorMessage from '../../components/ErrorLoadingMessage/ErrorMessage';
+
+//redux
+import { connect } from 'react-redux';
+import * as actionCreators from '../../store/actions/actionCreators'
+
 
 class MyOrders extends Component {
-  state = {
-    myOrders: [],
-    loading: true,
-    emptyOrder: false
-  }
 
   componentDidMount() {
-    axios.get('/order.json')
-      .then(response => {
-        if (response.data === "order") {
-          this.setState({ emptyOrder: true })
-          return false
-        }
-        const fetchingData = [];
-        for (let key in response.data) {
-          fetchingData.push({
-            ...response.data[key],
-            id: key
-          });
-        }
-        this.setState({ loading: false, myOrders: fetchingData })
-      })
-      .catch(error => { alert("There is something with the connection, please back after few minutes...") })
+    this.props.getOrderCards()
   }
-  render() {
-    let orderCard;
 
-    if (this.state.myOrders.length) {
+  render() {
+    let orderCard = <Spinner />
+
+    if (this.props.error) {   //!!!post error => true!!!
+      orderCard = <ErrorMessage />
+    }
+
+    if (this.props.cardsData && this.props.cardsData !== 'order') {
+      const fetchingData = [];
+
+      for (let key in this.props.cardsData) {
+        fetchingData.push({
+          ...this.props.cardsData[key],
+          id: key
+        });
+      }
+
       orderCard = (
         <div className={classes.OrdersCardContainer}>
-          {this.state.myOrders.map(order => (
+          {fetchingData.map(order => (
             <Order
               name={order.contactInfo.name}
               surname={order.contactInfo.surname}
@@ -52,11 +51,7 @@ class MyOrders extends Component {
       );
     }
 
-    if (this.state.loading) {
-      orderCard = <Spinner />
-    }
-
-    if (this.state.emptyOrder) {
+    if (this.props.cardsData === 'order') {
       orderCard = (
         <div className={classes.OrdersCardContainer}>
           <div className={classes.EmptyOrderCard}>
@@ -75,4 +70,18 @@ class MyOrders extends Component {
   }
 }
 
-export default MyOrders;
+const mapStateToProps = (state) => {
+  return {
+    cardsData: state.orderData.cardsData,
+    error: state.orderData.error
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getOrderCards: () =>
+      dispatch(actionCreators.axiosGetOrderCards()),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyOrders);

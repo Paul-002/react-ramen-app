@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Navbar from '../../components/NavBar/NavBar'
 import SideDrawer from '../../components/NavBar/SideDrawer/SideDrawer'
-//import classes from './Layout.css'
 import Aux from '../auxiliary'
+
+//redux
+import { connect } from 'react-redux'
 
 class Layout extends Component {
   state = {
@@ -22,11 +24,24 @@ class Layout extends Component {
   render() {
     return (
       <Aux>
-        <Navbar clickTheBurgerButton={this.showTheSideDrawer} />
-        <SideDrawer show={this.state.SideDrawer} clickedBackDrop={this.clickedBackDrop} />
+        <Navbar
+          clickTheBurgerButton={this.showTheSideDrawer}
+          isAuth={this.props.isAuth}
+        />
+        <SideDrawer
+          show={this.state.SideDrawer}
+          clickedBackDrop={this.clickedBackDrop}
+          isAuth={this.props.isAuth}
+        />
       </Aux>
     );
   }
 }
 
-export default Layout;
+const mapStateToProps = state => {
+  return {
+    isAuth: state.authData.token !== null
+  }
+}
+
+export default connect(mapStateToProps)(Layout);

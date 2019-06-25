@@ -15,25 +15,23 @@ const input = (props) => {
 
 	switch (props.inputtype) {
 		case 'input':
-			input = <input
+			return input = <input
 				className={InvalidClass.join(' ')}
 				onChange={props.change}
-				type={props.inputtype}
+				type={props.type}
 				name={props.name}
 				placeholder={props.placeholder} />
-			break;
 
 		case 'checkbox':
-			input = <label className={classes.CheckboxLabel}>
+			return input = <label className={classes.CheckboxLabel}>
 				<input
 					className={checkboxClass}
 					onChange={props.change}
-					type={props.inputtype}
+					type={props.type}
 					name={props.name}>
 				</input>
 				{props.label}
 			</label>
-			break;
 
 		default:
 			alert('something wrong');

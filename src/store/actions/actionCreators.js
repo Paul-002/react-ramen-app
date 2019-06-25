@@ -100,9 +100,9 @@ export const axiosGetIngredients = () => {
   }
 };
 
-export const axiosPostOrder = (contact) => {
+export const axiosPostOrder = (contact, token) => {
   return dispatch => {
-    axios.post('/order.json', contact)
+    axios.post('/order.json?auth=' + token, contact)
       .then(response => {
         dispatch(postSucess(response))
       })
@@ -112,9 +112,9 @@ export const axiosPostOrder = (contact) => {
   }
 };
 
-export const axiosGetOrderCards = () => {
+export const axiosGetOrderCards = (token) => {
   return dispatch => {
-    axios.get('/order.json')
+    axios.get('/order.json?auth=' + token)
       .then(response => {
         dispatch(getOrderCardsSucess(response))
       })

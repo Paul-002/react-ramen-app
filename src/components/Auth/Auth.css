@@ -1,0 +1,40 @@
+.Auth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 50%;
+}
+
+.FormContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.FormContainer p {
+  margin-top: 20px;
+}
+
+.ButtonContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+}
+
+.SignInOrUpContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.SignInOrUpMessage {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px dimgray;
+  font-size: 18px;
+}
+

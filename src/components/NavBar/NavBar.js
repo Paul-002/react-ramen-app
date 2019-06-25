@@ -5,7 +5,7 @@ import MenuButton from './NavItems/MenuButton/MenuButton'
 import Logo from "../Logo/Logo";
 
 
-const navBar = props => {
+const navBar = (props) => {
   return (
     <header className={classes.NavBar}>
       <MenuButton clickTheBurgerButton={props.clickTheBurgerButton} />  {/* show BurgerButton < 500 */}
@@ -13,7 +13,7 @@ const navBar = props => {
         <Logo /> {/* show logo < 500 */}
       </div>
       <nav className={classes.NavBox}>
-        <NavItems />  {/* show NavItems > 500 */}
+        <NavItems isAuth={props.isAuth} />  {/* show NavItems > 500 */}
       </nav>
     </header>
   );

@@ -8,9 +8,11 @@ import { BrowserRouter } from 'react-router-dom';
 //redux
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
-import ramenReducer from './store/reducers/ramenReducer'
-import orderReducer from './store/reducers/orderReducer'
+import ramenReducer from './store/reducers/ramenReducer';
+import orderReducer from './store/reducers/orderReducer';
+import authReducer from "./store/reducers/authReducer";
 import thunk from "redux-thunk";
+
 
 const logger = store => {
   return next => {
@@ -27,7 +29,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const combinedReducers = combineReducers({
   ramenData: ramenReducer,
-  orderData: orderReducer
+  orderData: orderReducer,
+  authData: authReducer
 });
 
 const store = createStore(combinedReducers, composeEnhancers(applyMiddleware(logger, thunk)));

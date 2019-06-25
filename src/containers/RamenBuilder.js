@@ -35,7 +35,11 @@ class RamenBuilder extends Component {
     this.props.axiosGetIngredientsHandler()
   }
 
-  changeModalVievAndClearResponse = () => { this.setState({ showModal: true }) }
+  changeModalVievAndClearResponse = () => {
+    !this.props.isAuth
+      ? this.props.history.push('/sign')
+      : this.setState({ showModal: true })
+  }
 
   changeBackDropViev = () => { this.setState({ showModal: false }) }
 
@@ -81,7 +85,11 @@ class RamenBuilder extends Component {
             count={this.props.ramen}
             disabled={disabledButton}
           />
-          <SubmitButton disabled={disabledSubmitButton} showModal={this.changeModalVievAndClearResponse} />
+          <SubmitButton
+            disabled={disabledSubmitButton}
+            showModal={this.changeModalVievAndClearResponse} //props hildren to component?
+            onlyForUsers={this.props.isAuth}
+          />
         </Aux>
 
       order =
@@ -110,7 +118,8 @@ const mapStateToProps = (state) => {
   return {
     ramen: state.ramenData.ramen,
     totalPrice: state.ramenData.totalPrice,
-    error: state.ramenData.error
+    error: state.ramenData.error,
+    isAuth: state.authData.token !== null
   }
 }
 

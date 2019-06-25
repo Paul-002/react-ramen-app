@@ -22,7 +22,7 @@ const sideDrawer = (props) => {
           <span>E-mail</span>
         </div>
         <nav className={classes.NavItemsContainer}>
-          <NavItems />
+          <NavItems isAuth={props.isAuth} />
         </nav>
       </div>
     </Aux>

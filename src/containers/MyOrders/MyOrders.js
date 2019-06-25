@@ -12,7 +12,7 @@ import * as actionCreators from '../../store/actions/actionCreators'
 class MyOrders extends Component {
 
   componentDidMount() {
-    this.props.getOrderCards()
+    this.props.getOrderCards(this.props.token)
   }
 
   render() {
@@ -73,14 +73,15 @@ class MyOrders extends Component {
 const mapStateToProps = (state) => {
   return {
     cardsData: state.orderData.cardsData,
-    error: state.orderData.error
+    error: state.orderData.error,
+    token: state.authData.token
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getOrderCards: () =>
-      dispatch(actionCreators.axiosGetOrderCards()),
+    getOrderCards: (token) =>
+      dispatch(actionCreators.axiosGetOrderCards(token)),
   }
 }
 

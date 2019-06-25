@@ -125,12 +125,12 @@ class ContactForm extends Component {
     }
 
     const contact = {
-      ingredients: this.props.ramen, // prevent 0, fix it
+      ingredients: this.props.ramen,
       totalPrice: this.props.totalPrice,
       contactInfo: stateValues
     }
 
-    this.props.axiosPostOrderHandler(contact);
+    this.props.axiosPostOrderHandler(contact, this.props.token);
   }
   /* first solution for complex inputs
   
@@ -222,6 +222,7 @@ class ContactForm extends Component {
         key={input.id}
         inputtype={input.config.inputType}
         placeholder={input.config.placeholder}
+        type={input.config.type}
         value={input.value}
         label={input.inputLabel.label}
         valid={!input.validation.valid}
@@ -259,14 +260,15 @@ const mapStateToProps = (state) => {
     totalPrice: state.ramenData.totalPrice,
     error: state.orderData.error,
     loading: state.orderData.loading,
-    response: state.orderData.response
+    response: state.orderData.response,
+    token: state.authData.token
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    axiosPostOrderHandler: (contact) => {
-      dispatch(actionCreators.axiosPostOrder(contact))
+    axiosPostOrderHandler: (contact, token) => {
+      dispatch(actionCreators.axiosPostOrder(contact, token))
     },
 
     changeLoadingVal: () =>

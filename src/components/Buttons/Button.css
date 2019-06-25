@@ -27,6 +27,19 @@
   background-color: #b40b0b;
 }
 
+.Swich {
+  background-color: #edf116;
+}
+
+.Swich:hover {
+  background-color: #b4a90b;
+}
+
+.CustomSwich {
+  color: black;
+  margin-left: 20px;
+}
+
 .Button:disabled {
   color: lightgray;
   cursor: not-allowed;

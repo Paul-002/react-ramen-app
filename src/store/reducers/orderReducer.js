@@ -20,7 +20,6 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.error,
-        //  loading: false
       }
 
     case actionTypes.FETCHING_ORDERS:

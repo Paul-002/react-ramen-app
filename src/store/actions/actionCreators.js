@@ -6,6 +6,7 @@ export const add = (value, typeOfIngredient) => {
     type: actionTypes.ADD,
     value: value,
     typeOfIngredient: typeOfIngredient
+    // pick: true
   }
 };
 
@@ -14,6 +15,7 @@ export const sub = (value, typeOfIngredient) => {
     type: actionTypes.SUB,
     value: value,
     typeOfIngredient: typeOfIngredient
+    // pick: true
   }
 };
 
@@ -31,49 +33,54 @@ export const subTotalPrice = (price) => {
   }
 };
 
-export const setAxiosIngredients = (response) => {    //get ingredients
+// GET INGREDIENTS FROM FIREBASE
+export const setAxiosIngredients = (response) => {
   return {
     type: actionTypes.SET_INGREDIENTS,
     fetchedIngredients: response
+    // pick: false
   }
 };
 
-export const errorAxiosIngredients = (error) => {     //error ingredients
+export const errorAxiosIngredients = (error) => {
   return {
     type: actionTypes.ERROR_INGREDIENTS,
-    error: error
+    errorGetIngredients: error
   }
 };
 
-export const postSucess = (response) => {    //post order
+// POST ORDER
+export const postSuccess = (response) => {
   return {
-    type: actionTypes.POST_SUCESS,
+    type: actionTypes.POST_SUCCESS,
     response: response
   }
 };
 
-export const postFail = (error) => {     //fail order
+export const postFail = (error) => {
   return {
     type: actionTypes.POST_FAIL,
-    error: error
+    errorPostFail: error
   }
 };
 
-export const getOrderCardsSucess = (response) => {     //get order cards
+// ORDER CARDS
+export const getOrderCardsSuccess = (response) => {
   return {
     type: actionTypes.FETCHING_ORDERS,
     response: response
-    //reducer change loading to true
+    // loading: true
   }
 };
 
-export const getOrderCardsFail = (error) => {     //fail order cards
+export const getOrderCardsFail = (error) => {
   return {
     type: actionTypes.FETCHING_ORDERS_FAIL,
-    error: error
+    errorOrderCards: error
   }
 };
 
+//UI FEATURES
 export const changeLoadingVal = () => {
   return {
     type: actionTypes.CHANGE_LOADING_VAL,
@@ -95,16 +102,16 @@ export const axiosGetIngredients = () => {
         dispatch(setAxiosIngredients(response.data))
       })
       .catch(error => {
-        dispatch(errorAxiosIngredients(true)) //fix that
+        dispatch(errorAxiosIngredients(error)) //fix that
       })
   }
 };
 
 export const axiosPostOrder = (contact, token) => {
   return dispatch => {
-    axios.post('/order.json?auth=' + token, contact)
+    axios.post(`/order.json?auth=${token}`, contact)
       .then(response => {
-        dispatch(postSucess(response))
+        dispatch(postSuccess(response))
       })
       .catch(error => {
         dispatch(postFail(true)) //fix that
@@ -112,11 +119,11 @@ export const axiosPostOrder = (contact, token) => {
   }
 };
 
-export const axiosGetOrderCards = (token) => {
+export const axiosGetOrderCards = (token, userId) => {
   return dispatch => {
-    axios.get('/order.json?auth=' + token)
+    axios.get(`/order.json?auth=${token}&orderBy="userId"&equalTo="${userId}"`)
       .then(response => {
-        dispatch(getOrderCardsSucess(response))
+        dispatch(getOrderCardsSuccess(response))
       })
       .catch(error => {
         dispatch(getOrderCardsFail(true))  //fix that

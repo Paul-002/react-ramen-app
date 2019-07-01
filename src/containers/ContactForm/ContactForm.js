@@ -3,6 +3,7 @@ import classes from './ContactForm.css'
 import Button from '../../components/Buttons/Button';
 import Spinner from '../../components/Spinner/Spinner';
 import Input from '../../components/Input/Input';
+import ErrorMessage from '../../components/ErrorLoadingMessage/ErrorMessage';
 
 //redux
 import { connect } from 'react-redux'
@@ -127,7 +128,8 @@ class ContactForm extends Component {
     const contact = {
       ingredients: this.props.ramen,
       totalPrice: this.props.totalPrice,
-      contactInfo: stateValues
+      contactInfo: stateValues,
+      userId: this.props.userId
     }
 
     this.props.axiosPostOrderHandler(contact, this.props.token);
@@ -241,6 +243,9 @@ class ContactForm extends Component {
       message = <div style={{ display: 'none' }}> </div>
       subButton = ''
     }
+    if (this.props.errorPostFail) {
+      form = <ErrorMessage />
+    }
 
     return (
       <div className={classes.FormContainer}>
@@ -258,10 +263,11 @@ const mapStateToProps = (state) => {
   return {
     ramen: state.ramenData.ramen,
     totalPrice: state.ramenData.totalPrice,
-    error: state.orderData.error,
+    errorPostFail: state.orderData.errorPostFail,
     loading: state.orderData.loading,
     response: state.orderData.response,
-    token: state.authData.token
+    token: state.authData.token,
+    userId: state.authData.userId
   }
 }
 

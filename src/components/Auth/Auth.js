@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Input from '../Input/Input';
 import Button from '../Buttons/Button';
 import classes from './Auth.css';
-import * as actions from '../../store/actions/auth';
+import * as actions from '../../store/actions/actionAuth';
 import { connect } from 'react-redux';
 import Spinner from '../Spinner/Spinner';
 import { Redirect } from 'react-router-dom';
@@ -47,6 +47,13 @@ class Auth extends Component {
     },
     readyToSubmit: false,
     signUp: true
+  }
+
+  componentDidMount() {
+    console.log(this.props.isAuth)
+    if (!this.props.pickedIngredient && this.props.authRedirect !== '/') {
+      this.props.setAuthRedirect()
+    }
   }
 
   submitButton = (evt) => {
@@ -136,14 +143,15 @@ class Auth extends Component {
     }
 
     let errorMessage = null;
-
     if (this.props.error) {
       errorMessage = <p className={classes.SignInOrUpMessage}>{this.props.error.message}</p>
     }
 
     let logInRedirect = null;
-
-    logInRedirect = this.props.isAuth ? <Redirect to='/' /> : null;
+    if (this.props.isAuth) {
+      logInRedirect = <Redirect to={this.props.authRedirect} />
+    }
+    console.log(this.props.isAuth)
 
     return (
       <div className={classes.FormContainer}>
@@ -172,13 +180,16 @@ const mapStateToProps = state => {
   return {
     loading: state.authData.loading,
     error: state.authData.error,
-    isAuth: state.authData.token !== null
+    isAuth: state.authData.token !== null,
+    authRedirect: state.authData.authRedirect,
+    pickedIngredient: state.ramenData.pick
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (inputValues, signInOrSignUp) => dispatch(actions.auth(inputValues, signInOrSignUp))
+    onAuth: (inputValues, signInOrSignUp) => dispatch(actions.auth(inputValues, signInOrSignUp)),
+    setAuthRedirect: () => dispatch(actions.redirectPath('/'))
   }
 }
 

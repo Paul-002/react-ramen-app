@@ -12,19 +12,15 @@ import * as actionCreators from '../../store/actions/actionCreators'
 class MyOrders extends Component {
 
   componentDidMount() {
-    this.props.getOrderCards(this.props.token)
+    this.props.getOrderCards(this.props.token, this.props.userId)
   }
 
   render() {
-    let orderCard = <Spinner />
+    let orderCard;
+    orderCard = <Spinner />
 
-    if (this.props.error) {   //!!!post error => true!!!
-      orderCard = <ErrorMessage />
-    }
-
-    if (this.props.cardsData && this.props.cardsData !== 'order') {
+    if (this.props.cardsData && Object.keys(this.props.cardsData).length) {
       const fetchingData = [];
-
       for (let key in this.props.cardsData) {
         fetchingData.push({
           ...this.props.cardsData[key],
@@ -51,16 +47,20 @@ class MyOrders extends Component {
       );
     }
 
-    if (this.props.cardsData === 'order') {
-      orderCard = (
-        <div className={classes.OrdersCardContainer}>
-          <div className={classes.EmptyOrderCard}>
-            <h1>There is no orders yet :(</h1>
-            <h5>Go to the Homepage for create your favorite ramen! </h5>
-          </div>
-        </div>
-      )
+    if (this.props.errorOrderCards) {
+      orderCard = <ErrorMessage withBorder />
     }
+
+    if (this.props.cardsData) {
+      if (!Object.keys(this.props.cardsData).length) {
+        orderCard = (
+          <div className={classes.EmptyOrderCard}>
+            <p>There is no orders yet. <br /> <br /> Go to the Homepage for create your favorite ramen!</p>
+          </div>
+        )
+      }
+    }
+
 
     return (
       <div>
@@ -73,15 +73,16 @@ class MyOrders extends Component {
 const mapStateToProps = (state) => {
   return {
     cardsData: state.orderData.cardsData,
-    error: state.orderData.error,
-    token: state.authData.token
+    errorOrderCards: state.orderData.errorOrderCards,
+    token: state.authData.token,
+    userId: state.authData.userId,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getOrderCards: (token) =>
-      dispatch(actionCreators.axiosGetOrderCards(token)),
+    getOrderCards: (token, userId) =>
+      dispatch(actionCreators.axiosGetOrderCards(token, userId)),
   }
 }
 

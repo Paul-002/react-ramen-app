@@ -13,13 +13,14 @@
 .Text {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 20px 20px 40px 20px;
   margin: 5px; /* margin for good looking border-bottom */
   border-bottom: 1px solid black;
 }
 
 .Text span {
-  font-size: 20px;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .NavItemsContainer { /* First container for navbar in sidedrawer second is <ul>  */

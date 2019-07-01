@@ -13,6 +13,7 @@ import ErrorMessage from '../components/ErrorLoadingMessage/ErrorMessage';
 //redux
 import { connect } from 'react-redux';
 import * as actionCreators from '../store/actions/actionCreators';
+import * as authCreator from "../store/actions/actionAuth";
 
 const RAMEN_PRICES = {
   chicken: 5,
@@ -36,9 +37,12 @@ class RamenBuilder extends Component {
   }
 
   changeModalVievAndClearResponse = () => {
-    !this.props.isAuth
-      ? this.props.history.push('/sign')
-      : this.setState({ showModal: true })
+    if (!this.props.isAuth) {
+      this.props.setRedirectPath('/check-before-buy')
+      this.props.history.push('/sign')
+    } else {
+      this.setState({ showModal: true })
+    }
   }
 
   changeBackDropViev = () => { this.setState({ showModal: false }) }
@@ -52,10 +56,10 @@ class RamenBuilder extends Component {
 
   render() {
     let order = null;
-    let buttonSection = <Spinner />;
+    let buttonSection = <Spinner />
 
-    if (this.props.error) {
-      buttonSection = <ErrorMessage />
+    if (this.props.errorGetIngredients) {
+      buttonSection = <ErrorMessage withBorder />
     }
 
     if (this.props.ramen) {
@@ -67,7 +71,7 @@ class RamenBuilder extends Component {
       for (let key in disabledButton) {
         checkArray.push(disabledButton[key])
         disabledButton[key] = {
-          subButton: disabledButton[key] === 0, // initial prevent
+          subButton: disabledButton[key] === 0,
           addButton: disabledButton[key] >= 3,
         }
       }
@@ -118,7 +122,7 @@ const mapStateToProps = (state) => {
   return {
     ramen: state.ramenData.ramen,
     totalPrice: state.ramenData.totalPrice,
-    error: state.ramenData.error,
+    errorGetIngredients: state.ramenData.errorGetIngredients,
     isAuth: state.authData.token !== null
   }
 }
@@ -138,7 +142,10 @@ const mapDispatchToProps = dispatch => {
       dispatch(actionCreators.subTotalPrice(RAMEN_PRICES[evt])),
 
     axiosGetIngredientsHandler: () =>
-      dispatch(actionCreators.axiosGetIngredients())
+      dispatch(actionCreators.axiosGetIngredients()),
+
+    setRedirectPath: (path) =>
+      dispatch(authCreator.redirectPath(path))
   }
 }
 

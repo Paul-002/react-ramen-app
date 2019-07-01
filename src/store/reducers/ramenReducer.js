@@ -3,7 +3,9 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   ramen: null,
   totalPrice: 0,
-  error: false
+  error: false,
+  errorGetIngredients: false,
+  pick: false
 }
 
 const ramenReducer = (state = initialState, action) => {
@@ -13,8 +15,9 @@ const ramenReducer = (state = initialState, action) => {
         ...state,
         ramen: {
           ...state.ramen,
-          [action.typeOfIngredient]: state.ramen[action.typeOfIngredient] + action.value
+          [action.typeOfIngredient]: state.ramen[action.typeOfIngredient] + action.value,
         },
+        pick: true
       }
 
     case actionTypes.SUB:
@@ -22,8 +25,9 @@ const ramenReducer = (state = initialState, action) => {
         ...state,
         ramen: {
           ...state.ramen,
-          [action.typeOfIngredient]: state.ramen[action.typeOfIngredient] - action.value
+          [action.typeOfIngredient]: state.ramen[action.typeOfIngredient] - action.value,
         },
+        pick: true
       }
 
     case actionTypes.ADD_TOTAL_PRICE:
@@ -42,13 +46,14 @@ const ramenReducer = (state = initialState, action) => {
       return {
         ...state,
         ramen: action.fetchedIngredients,
+        pick: false,
         totalPrice: 15.20
       }
 
     case actionTypes.ERROR_INGREDIENTS:
       return {
         ...state,
-        error: action.error
+        errorGetIngredients: action.errorGetIngredients
       }
 
     default:

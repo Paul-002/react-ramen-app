@@ -4,21 +4,11 @@
   justify-content: center;
 }
 
-.EmptyOrderCard {
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	margin: 10px;
-	padding: 15px;
-	min-width: 260px;
-	min-height: 300px;
-	background-color: rgba(255, 255, 255, 0.9);
-	border-radius: 15px;
-	box-shadow: 2px 2px 2px dimgray
-}
-
-.EmptyOrderCard h5 {
-	margin-top: 30px;
+.EmptyOrderCard p {
+	position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 30px 30px 50px 15px;
 }
 
 .BackToHome {

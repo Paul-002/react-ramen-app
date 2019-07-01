@@ -1,10 +1,10 @@
 import React from 'react'
 import classes from './ErrorMessage.css'
 
-const errorMessage = () => {
+const errorMessage = (props) => {
   return (
-    <p className={classes.MessageError}>
-      Whoops! Sorry, something went wrong. <br /> Please come back in a few minutes and try again.
+    <p className={props.withBorder ? classes.MessageErrorWithBorder : classes.MessageError}>
+      Whoops! Sorry, something went wrong. <br /><br /> Please come back in a few minutes and try again.
     </p>
   );
 }

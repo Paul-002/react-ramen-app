@@ -1,15 +1,16 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  cardsData: null,
-  error: false,
+  cardsData: false,
+  errorOrderCards: false,
+  errorPostFail: false,
   response: null,
   loading: false
 }
 
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.POST_SUCESS:
+    case actionTypes.POST_SUCCESS:
       return {
         ...state,
         response: action.response.status,
@@ -19,7 +20,7 @@ const orderReducer = (state = initialState, action) => {
     case actionTypes.POST_FAIL:
       return {
         ...state,
-        error: action.error,
+        errorPostFail: action.errorPostFail,
       }
 
     case actionTypes.FETCHING_ORDERS:
@@ -31,7 +32,7 @@ const orderReducer = (state = initialState, action) => {
     case actionTypes.FETCHING_ORDERS_FAIL:
       return {
         ...state,
-        error: action.error
+        errorOrderCards: action.errorOrderCards
       }
 
     case actionTypes.CHANGE_LOADING_VAL:  //loading spinner

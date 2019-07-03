@@ -1,19 +1,16 @@
-import React, { Component } from "react";
-import Aux from "../hoc/auxiliary";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Aux from '../hoc/auxiliary';
 import classes from './RamenBuilder.css';
-import ButtonsSection from "./ButtonsSection";
+import ButtonsSection from './ButtonsSection';
 import TotalCost from '../components/TotalCost/TotalCost';
 import SubmitButton from '../components/Buttons/SubmitButton';
 import Modal from '../components/Modal/Modal';
 import OrderSummary from '../components/OrderSummary/OrderSummary';
-import Spinner from "../components/Spinner/Spinner";
+import Spinner from '../components/Spinner/Spinner';
 import ErrorMessage from '../components/ErrorLoadingMessage/ErrorMessage';
-//import errorHandler from "../hoc/errorHandler";
-
-//redux
-import { connect } from 'react-redux';
 import * as actionCreators from '../store/actions/actionCreators';
-import * as authCreator from "../store/actions/actionAuth";
+import * as authCreator from '../store/actions/actionAuth';
 
 const RAMEN_PRICES = {
   chicken: 5,
@@ -24,8 +21,8 @@ const RAMEN_PRICES = {
   onion: 1,
   mun: 3.7,
   shiitake: 3,
-  reishi: 3.3
-}
+  reishi: 3.3,
+};
 
 class RamenBuilder extends Component {
   state = {
@@ -33,83 +30,98 @@ class RamenBuilder extends Component {
   };
 
   componentDidMount() {
-    this.props.axiosGetIngredientsHandler()
+    const { axiosGetIngredientsHandler } = this.props;
+    axiosGetIngredientsHandler();
   }
 
   changeModalVievAndClearResponse = () => {
-    if (!this.props.isAuth) {
-      this.props.setRedirectPath('/check-before-buy')
-      this.props.history.push('/sign')
+    const { isAuth, setRedirectPath, history: { push } } = this.props;
+
+    if (!isAuth) {
+      setRedirectPath('/check-before-buy');
+      push('/sign');
     } else {
-      this.setState({ showModal: true })
+      this.setState({ showModal: true });
     }
   }
 
-  changeBackDropViev = () => { this.setState({ showModal: false }) }
+  changeBackDropViev = () => { this.setState({ showModal: false }); }
 
   orderTheRamen = () => {
-    this.setState({ showModal: false })
-    this.props.history.push({
-      pathname: '/check-before-buy',
-    })
+    const { history: { push } } = this.props;
+
+    this.setState({ showModal: false });
+    push('/check-before-buy');
   }
 
   render() {
-    let order = null;
-    let buttonSection = <Spinner />
+    const {
+      errorGetIngredients, ramen, totalPrice, isAuth,
+      addCountHandler, addTotalPriceHandler, subCountHandler, subTotalPriceHandler,
+    } = this.props;
 
-    if (this.props.errorGetIngredients) {
-      buttonSection = <ErrorMessage withBorder />
+    let order = null;
+    let buttonSection = <Spinner />;
+
+    if (errorGetIngredients) {
+      buttonSection = <ErrorMessage withBorder />;
     }
 
-    if (this.props.ramen) {
+    if (ramen) {
       const checkArray = [];
       const disabledButton = {
-        ...this.props.ramen
+        ...ramen,
       };
 
-      for (let key in disabledButton) {
-        checkArray.push(disabledButton[key])
-        disabledButton[key] = {
-          subButton: disabledButton[key] === 0,
-          addButton: disabledButton[key] >= 3,
+      // eslint-disable-next-line no-restricted-syntax
+      for (const key in disabledButton) {
+        if (disabledButton) {
+          checkArray.push(disabledButton[key]);
+          disabledButton[key] = {
+            subButton: disabledButton[key] === 0,
+            addButton: disabledButton[key] >= 3,
+          };
         }
       }
 
       const disabledSubmitButton = checkArray.every(val => val === 0);
 
-      buttonSection =
+      buttonSection = (
         <Aux>
           <div className={classes.TotalCostContainer}>
-            <TotalCost totalPrice={this.props.totalPrice} />
+            <TotalCost totalPrice={totalPrice} />
           </div>
           <ButtonsSection
-            addCount={(e) => { this.props.addCountHandler(e); this.props.addTotalPriceHandler(e) }}
-            removeCount={(e) => { this.props.subCountHandler(e); this.props.subTotalPriceHandler(e) }}
-            count={this.props.ramen}
+            addCount={(e) => { addCountHandler(e); addTotalPriceHandler(e); }}
+            removeCount={(e) => { subCountHandler(e); subTotalPriceHandler(e); }}
+            count={ramen}
             disabled={disabledButton}
           />
           <SubmitButton
             disabled={disabledSubmitButton}
-            showModal={this.changeModalVievAndClearResponse} //props hildren to component?
-            onlyForUsers={this.props.isAuth}
+            showModal={this.changeModalVievAndClearResponse}
+            onlyForUsers={isAuth}
           />
         </Aux>
+      );
 
-      order =
+      order = (
         <OrderSummary
-          ingredientsList={this.props.ramen}
+          ingredientsList={ramen}
           hideTheModal={this.changeBackDropViev}
           orderTheRamen={this.orderTheRamen}
-          totalPrice={this.props.totalPrice}
+          totalPrice={totalPrice}
         />
+      );
     }
 
     return (
       <Aux>
         <Modal
+          // eslint-disable-next-line react/destructuring-assignment
           show={this.state.showModal}
-          clickedBackDrop={this.changeBackDropViev} >
+          clickedBackDrop={this.changeBackDropViev}
+        >
           {order}
         </Modal>
         {buttonSection}
@@ -118,35 +130,20 @@ class RamenBuilder extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    ramen: state.ramenData.ramen,
-    totalPrice: state.ramenData.totalPrice,
-    errorGetIngredients: state.ramenData.errorGetIngredients,
-    isAuth: state.authData.token !== null
-  }
-}
+const mapStateToProps = state => ({
+  ramen: state.ramenData.ramen,
+  totalPrice: state.ramenData.totalPrice,
+  errorGetIngredients: state.ramenData.errorGetIngredients,
+  isAuth: state.authData.token !== null,
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addCountHandler: (evt) =>
-      dispatch(actionCreators.add(1, evt)),
+const mapDispatchToProps = dispatch => ({
+  addCountHandler: evt => dispatch(actionCreators.add(1, evt)),
+  subCountHandler: evt => dispatch(actionCreators.sub(1, evt)),
+  addTotalPriceHandler: evt => dispatch(actionCreators.addTotalPrice(RAMEN_PRICES[evt])),
+  subTotalPriceHandler: evt => dispatch(actionCreators.subTotalPrice(RAMEN_PRICES[evt])),
+  axiosGetIngredientsHandler: () => dispatch(actionCreators.axiosGetIngredients()),
+  setRedirectPath: path => dispatch(authCreator.redirectPath(path)),
+});
 
-    subCountHandler: (evt) =>
-      dispatch(actionCreators.sub(1, evt)),
-
-    addTotalPriceHandler: (evt) =>
-      dispatch(actionCreators.addTotalPrice(RAMEN_PRICES[evt])),
-
-    subTotalPriceHandler: (evt) =>
-      dispatch(actionCreators.subTotalPrice(RAMEN_PRICES[evt])),
-
-    axiosGetIngredientsHandler: () =>
-      dispatch(actionCreators.axiosGetIngredients()),
-
-    setRedirectPath: (path) =>
-      dispatch(authCreator.redirectPath(path))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(RamenBuilder)
+export default connect(mapStateToProps, mapDispatchToProps)(RamenBuilder);

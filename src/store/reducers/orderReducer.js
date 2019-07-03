@@ -5,8 +5,8 @@ const initialState = {
   errorOrderCards: false,
   errorPostFail: false,
   response: null,
-  loading: false
-}
+  loading: false,
+};
 
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -14,42 +14,42 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         response: action.response.status,
-        loading: false
-      }
+        loading: false,
+      };
 
     case actionTypes.POST_FAIL:
       return {
         ...state,
         errorPostFail: action.errorPostFail,
-      }
+      };
 
     case actionTypes.FETCHING_ORDERS:
       return {
         ...state,
-        cardsData: action.response.data
-      }
+        cardsData: action.response.data,
+      };
 
     case actionTypes.FETCHING_ORDERS_FAIL:
       return {
         ...state,
-        errorOrderCards: action.errorOrderCards
-      }
+        errorOrderCards: action.errorOrderCards,
+      };
 
-    case actionTypes.CHANGE_LOADING_VAL:  //loading spinner
+    case actionTypes.CHANGE_LOADING_VAL: // loading spinner
       return {
         ...state,
-        loading: true
-      }
+        loading: true,
+      };
 
-    case actionTypes.CLEAR_RESPONSE_STATUS:  //change response status when subButton are clicked
+    case actionTypes.CLEAR_RESPONSE_STATUS: // change response status when subButton are clicked
       return {
         ...state,
-        response: null
-      }
+        response: null,
+      };
 
     default:
-      return state
+      return state;
   }
-}
+};
 
 export default orderReducer;

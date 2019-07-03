@@ -1,11 +1,18 @@
+/* eslint-disable */
 import React from 'react';
-import classes from './Button.css'
+import classes from './Button.css';
 
-const button = (props) => {
-	return (
-		<button disabled={props.disabled} className={[classes.Button, classes[props.btn], classes[props.customStyle]].join(' ')}
-			onClick={props.clicked}>{props.children}</button>
-	);
-}
+const button = ({
+  disabled, btn, customStyle, clicked, children,
+}) => (
+    <button
+      type="button"
+      disabled={disabled}
+      className={[classes.Button, classes[btn], classes[customStyle]].join(' ')}
+      onClick={clicked}
+    >
+      {children}
+    </button>
+  );
 
 export default button;

@@ -4,7 +4,7 @@
 }
 
 .Background {
-  background-image: url(./assets/background-ramen-50.jpg);
+  background-color: hsl(0, 0%, 5%);
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;

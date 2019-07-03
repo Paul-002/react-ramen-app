@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import classes from './ContactForm.css'
+import { connect } from 'react-redux';
+import classes from './ContactForm.css';
 import Button from '../../components/Buttons/Button';
 import Spinner from '../../components/Spinner/Spinner';
 import Input from '../../components/Input/Input';
 import ErrorMessage from '../../components/ErrorLoadingMessage/ErrorMessage';
 
-//redux
-import { connect } from 'react-redux'
-import * as actionCreators from '../../store/actions/actionCreators'
+// redux
+import * as actionCreators from '../../store/actions/actionCreators';
 
 class ContactForm extends Component {
   state = {
@@ -17,16 +17,16 @@ class ContactForm extends Component {
         inputSettings: {
           inputType: 'input',
           type: 'text',
-          placeholder: 'Name'
+          placeholder: 'Name',
         },
         inputLabel: {
-          label: ''
+          label: '',
         },
         validation: {
           isRequired: true,
           valid: false,
-          touch: false
-        }
+          touch: false,
+        },
       },
 
       surname: {
@@ -34,16 +34,16 @@ class ContactForm extends Component {
         inputSettings: {
           inputType: 'input',
           type: 'text',
-          placeholder: 'Surname'
+          placeholder: 'Surname',
         },
         inputLabel: {
-          label: ''
+          label: '',
         },
         validation: {
           isRequired: true,
           valid: false,
-          touch: false
-        }
+          touch: false,
+        },
       },
 
       email: {
@@ -51,16 +51,16 @@ class ContactForm extends Component {
         inputSettings: {
           inputType: 'input',
           type: 'text',
-          placeholder: 'E-mail'
+          placeholder: 'E-mail',
         },
         inputLabel: {
-          label: ''
+          label: '',
         },
         validation: {
           isRequired: true,
           valid: false,
-          touch: false
-        }
+          touch: false,
+        },
       },
 
       street: {
@@ -68,16 +68,16 @@ class ContactForm extends Component {
         inputSettings: {
           inputType: 'input',
           type: 'text',
-          placeholder: 'Street'
+          placeholder: 'Street',
         },
         inputLabel: {
-          label: ''
+          label: '',
         },
         validation: {
           isRequired: true,
           valid: false,
-          touch: false
-        }
+          touch: false,
+        },
       },
 
       city: {
@@ -85,16 +85,16 @@ class ContactForm extends Component {
         inputSettings: {
           inputType: 'input',
           type: 'text',
-          placeholder: 'City'
+          placeholder: 'City',
         },
         inputLabel: {
-          label: ''
+          label: '',
         },
         validation: {
           isRequired: true,
           valid: false,
-          touch: false
-        }
+          touch: false,
+        },
       },
 
       cardPayment: {
@@ -104,16 +104,16 @@ class ContactForm extends Component {
           type: 'checkbox',
         },
         inputLabel: {
-          label: 'Card payment'
+          label: 'Card payment',
         },
         validation: {
           isRequired: false,
           valid: true,
-          touch: false
-        }
+          touch: false,
+        },
       },
     },
-    readyToSubmit: false // state validation
+    readyToSubmit: false, // state validation
   }
 
   submitButton = (evt) => {
@@ -121,31 +121,31 @@ class ContactForm extends Component {
     this.props.changeLoadingVal();
     const stateValues = {};
 
-    for (let key in this.state.inputPattern) {
-      stateValues[key] = this.state.inputPattern[key].value
+    for (const key in this.state.inputPattern) {
+      stateValues[key] = this.state.inputPattern[key].value;
     }
 
     const contact = {
       ingredients: this.props.ramen,
       totalPrice: this.props.totalPrice,
       contactInfo: stateValues,
-      userId: this.props.userId
-    }
+      userId: this.props.userId,
+    };
 
     this.props.axiosPostOrderHandler(contact, this.props.token);
   }
   /* first solution for complex inputs
-  
+
     checkForValidity(value, required, id) {
       let isValid = false;
-  
+
       if (!required) {
         return isValid = true;
       }
-  
+
       let whitespaces = value.trim() !== '';
       let minLength = value.length >= 2
-  
+
       switch (id) {
         case 'name':
           isValid = whitespaces && minLength
@@ -153,19 +153,19 @@ class ContactForm extends Component {
         case 'surname':
           isValid = whitespaces && minLength
           break;
-  
+
         case 'email':
           isValid = /\S+@\S+\.\S+/.test(value)
           break;
-  
+
         case 'Street':
           isValid = whitespaces && minLength
           break;
-  
+
         case 'City':
           isValid = whitespaces && minLength
           break;
-  
+
         default:
         alert('something wrong');
       }
@@ -180,36 +180,36 @@ class ContactForm extends Component {
       return isValid = true;
     }
 
-    id === 'email' ? isValid = /\S+@\S+\.\S+/.test(value) : isValid = value.trim() !== '' && value.length >= 2
-    return isValid
+    id === 'email' ? isValid = /\S+@\S+\.\S+/.test(value) : isValid = value.trim() !== '' && value.length >= 2;
+    return isValid;
   }
 
   onChangeHandler = (evt, objName) => {
-    const stateObjCopy = JSON.parse(JSON.stringify(this.state.inputPattern)); //obj deep clone
+    const stateObjCopy = JSON.parse(JSON.stringify(this.state.inputPattern)); // obj deep clone
     let readyToSubmit = true;
 
     stateObjCopy[objName].value = evt.target.value;
-    stateObjCopy[objName].validation.valid = this.checkForValidity(stateObjCopy[objName].value, stateObjCopy[objName].validation.isRequired, objName)
+    stateObjCopy[objName].validation.valid = this.checkForValidity(stateObjCopy[objName].value, stateObjCopy[objName].validation.isRequired, objName);
     stateObjCopy[objName].validation.touch = true;
 
-    for (let objNames in stateObjCopy) {
+    for (const objNames in stateObjCopy) {
       readyToSubmit = stateObjCopy[objNames].validation.valid && readyToSubmit;
     }
 
     if (objName === 'cardPayment') {
-      stateObjCopy[objName].value = evt.target.checked
+      stateObjCopy[objName].value = evt.target.checked;
     }
 
     this.setState({
-      inputPattern: stateObjCopy, readyToSubmit: readyToSubmit
-    })
+      inputPattern: stateObjCopy, readyToSubmit,
+    });
   }
 
   render() {
     let message = <h4 className={classes.FormHeader}>Please enter your details...</h4>;
     const configArray = [];
 
-    for (let key in this.state.inputPattern) {
+    for (const key in this.state.inputPattern) {
       configArray.push({
         id: key,
         value: this.state.inputPattern[key].value,
@@ -229,22 +229,23 @@ class ContactForm extends Component {
         label={input.inputLabel.label}
         valid={!input.validation.valid}
         touch={input.validation.touch}
-        change={(evt) => this.onChangeHandler(evt, input.id)}>
-      </Input>
-    ))
+        change={evt => this.onChangeHandler(evt, input.id)}
+      />
+    ));
 
-    let subButton =
-      <Button clicked={this.submitButton} disabled={!this.state.readyToSubmit} btn='SubmitButton'>
+    let subButton = (
+      <Button clicked={this.submitButton} disabled={!this.state.readyToSubmit} btn="SubmitButton">
         Order now!
       </Button>
+    );
 
     if (this.props.loading) {
-      form = <Spinner />
-      message = <div style={{ display: 'none' }}> </div>
-      subButton = ''
+      form = <Spinner />;
+      message = <div style={{ display: 'none' }}> </div>;
+      subButton = '';
     }
     if (this.props.errorPostFail) {
-      form = <ErrorMessage />
+      form = <ErrorMessage />;
     }
 
     return (
@@ -259,27 +260,22 @@ class ContactForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    ramen: state.ramenData.ramen,
-    totalPrice: state.ramenData.totalPrice,
-    errorPostFail: state.orderData.errorPostFail,
-    loading: state.orderData.loading,
-    response: state.orderData.response,
-    token: state.authData.token,
-    userId: state.authData.userId
-  }
-}
+const mapStateToProps = state => ({
+  ramen: state.ramenData.ramen,
+  totalPrice: state.ramenData.totalPrice,
+  errorPostFail: state.orderData.errorPostFail,
+  loading: state.orderData.loading,
+  response: state.orderData.response,
+  token: state.authData.token,
+  userId: state.authData.userId,
+});
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    axiosPostOrderHandler: (contact, token) => {
-      dispatch(actionCreators.axiosPostOrder(contact, token))
-    },
+const mapDispatchToProps = dispatch => ({
+  axiosPostOrderHandler: (contact, token) => {
+    dispatch(actionCreators.axiosPostOrder(contact, token));
+  },
 
-    changeLoadingVal: () =>
-      dispatch(actionCreators.changeLoadingVal()),
-  }
-}
+  changeLoadingVal: () => dispatch(actionCreators.changeLoadingVal()),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

@@ -1,31 +1,35 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
-import classes from './SideDrawer.css'
-import NavItems from '../NavItems/NavItems'
+import classes from './SideDrawer.css';
+import NavItems from '../NavItems/NavItems';
 import BackDrop from '../../BackDrop/BackDrop';
 import Aux from '../../../hoc/auxiliary';
 
 const sideDrawer = (props) => {
+  const { show, clickedBackDrop, isAuth } = props;
   let openOrClosed = [classes.SideDrawer, classes.CloseTheSideDrawerAnim];
 
-  if (props.show) {
+  if (show) {
     openOrClosed = [classes.SideDrawer, classes.OpenTheSideDrawerAnim];
   }
+
   return (
     <Aux>
-      <BackDrop show={props.show} clickedBackDrop={props.clickedBackDrop} />
+      <BackDrop show={show} clickedBackDrop={clickedBackDrop} />
       <div className={openOrClosed.join(' ')}>
         <div className={classes.Text}>
-          {localStorage.getItem('userEmail')
-            ? <span>Hello user! <br /> {localStorage.getItem('userEmail')}</span>
-            : <span>Welcome guest. <br /> Please sign in/up </span>}
-          <span></span>
+          {
+            localStorage.getItem('userEmail')
+              ? <span> Hello user! <br /> {localStorage.getItem('userEmail')} </span>
+              : <span> Welcome guest. <br /> Please sign in/up </span>
+          }
         </div>
         <nav className={classes.NavItemsContainer}>
-          <NavItems isAuth={props.isAuth} />
+          <NavItems isAuth={isAuth} />
         </nav>
       </div>
     </Aux>
   );
-}
+};
 
 export default sideDrawer;

@@ -1,31 +1,33 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Order from '../../components/Order/Order';
 import Spinner from '../../components/Spinner/Spinner';
 import classes from './MyOrders.css';
 import ErrorMessage from '../../components/ErrorLoadingMessage/ErrorMessage';
-
-//redux
-import { connect } from 'react-redux';
-import * as actionCreators from '../../store/actions/actionCreators'
+import * as actionCreators from '../../store/actions/actionCreators';
 
 
 class MyOrders extends Component {
-
   componentDidMount() {
-    this.props.getOrderCards(this.props.token, this.props.userId)
+    const { token, userId, getOrderCards } = this.props;
+    getOrderCards(token, userId);
   }
 
   render() {
+    const { cardsData, errorOrderCards } = this.props;
     let orderCard;
-    orderCard = <Spinner />
+    orderCard = <Spinner />;
 
-    if (this.props.cardsData && Object.keys(this.props.cardsData).length) {
+    if (cardsData && Object.keys(cardsData).length) {
       const fetchingData = [];
-      for (let key in this.props.cardsData) {
-        fetchingData.push({
-          ...this.props.cardsData[key],
-          id: key
-        });
+      // eslint-disable-next-line no-restricted-syntax
+      for (const key in cardsData) {
+        if (cardsData) {
+          fetchingData.push({
+            ...cardsData[key],
+            id: key,
+          });
+        }
       }
 
       orderCard = (
@@ -47,20 +49,24 @@ class MyOrders extends Component {
       );
     }
 
-    if (this.props.errorOrderCards) {
-      orderCard = <ErrorMessage withBorder />
+    if (errorOrderCards) {
+      orderCard = <ErrorMessage withBorder />;
     }
 
-    if (this.props.cardsData) {
-      if (!Object.keys(this.props.cardsData).length) {
+    if (cardsData) {
+      if (!Object.keys(cardsData).length) {
         orderCard = (
           <div className={classes.EmptyOrderCard}>
-            <p>There is no orders yet. <br /> <br /> Go to the Homepage for create your favorite ramen!</p>
+            <p>
+              There is no orders yet.
+              <br />
+              <br />
+              Go to the Homepage for create your favorite ramen!
+            </p>
           </div>
-        )
+        );
       }
     }
-
 
     return (
       <div>
@@ -70,20 +76,15 @@ class MyOrders extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    cardsData: state.orderData.cardsData,
-    errorOrderCards: state.orderData.errorOrderCards,
-    token: state.authData.token,
-    userId: state.authData.userId,
-  }
-}
+const mapStateToProps = state => ({
+  cardsData: state.orderData.cardsData,
+  errorOrderCards: state.orderData.errorOrderCards,
+  token: state.authData.token,
+  userId: state.authData.userId,
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getOrderCards: (token, userId) =>
-      dispatch(actionCreators.axiosGetOrderCards(token, userId)),
-  }
-}
+const mapDispatchToProps = dispatch => ({
+  getOrderCards: (token, userId) => dispatch(actionCreators.axiosGetOrderCards(token, userId)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyOrders);

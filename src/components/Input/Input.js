@@ -1,47 +1,60 @@
+/* eslint-disable */
 import React from 'react';
 import Aux from '../../hoc/auxiliary';
-import classes from './Input.css'
+import classes from './Input.css';
 
 const input = (props) => {
-	let input = null;
-	const checkboxClass = [classes.InputCheckbox]
-	const InvalidClass = [classes.FormInput];
+  const {
+    valid, touch, inputtype, change, type, name, placeholder, label,
+  } = props;
 
-	if (props.valid && props.touch) {
-		InvalidClass.push(classes.Invalid)
-	}
+  let inputData = null;
+  const checkboxClass = [classes.InputCheckbox];
+  const InvalidClass = [classes.FormInput];
 
-	InvalidClass.push(classes.Valid)
+  if (valid && touch) {
+    InvalidClass.push(classes.Invalid);
+  }
 
-	switch (props.inputtype) {
-		case 'input':
-			return input = <input
-				className={InvalidClass.join(' ')}
-				onChange={props.change}
-				type={props.type}
-				name={props.name}
-				placeholder={props.placeholder} />
+  InvalidClass.push(classes.Valid);
 
-		case 'checkbox':
-			return input = <label className={classes.CheckboxLabel}>
-				<input
-					className={checkboxClass}
-					onChange={props.change}
-					type={props.type}
-					name={props.name}>
-				</input>
-				{props.label}
-			</label>
+  switch (inputtype) {
+    case 'input':
+      inputData = (
+        <input
+          className={InvalidClass.join(' ')}
+          onChange={change}
+          type={type}
+          name={name}
+          placeholder={placeholder}
+        />
+      );
+      break;
 
-		default:
-			alert('something wrong');
-	}
+    case 'checkbox':
+      inputData = (
+        <label className={classes.CheckboxLabel}>
+          <input
+            className={checkboxClass}
+            onChange={change}
+            type={type}
+            name={name}
+          >
+          </input>
+          {label}
+        </label>
+      );
+      break;
 
-	return (
-		<Aux>
-			{input}
-		</Aux>
-	);
-}
+    default:
+      alert('something wrong');
+  }
+
+  return (
+    <Aux>
+      {inputData}
+    </Aux>
+  );
+};
 
 export default input;

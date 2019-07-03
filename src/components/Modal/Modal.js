@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import classes from './Modal.css'
-import BackDrop from '../BackDrop/BackDrop'
-import Aux from '../../hoc/auxiliary'
+import classes from './Modal.css';
+import BackDrop from '../BackDrop/BackDrop';
+import Aux from '../../hoc/auxiliary';
 
 class Modal extends Component {
-
+  // eslint-disable-next-line no-unused-vars
   shouldComponentUpdate(nextProps, nextState) {
-    return (nextProps.show !== this.props.show) // || (nextProps.children !== this.props.children)
+    // eslint-disable-next-line react/destructuring-assignment
+    return (nextProps.show !== this.props.show); // || (nextProps.children !== this.props.children)
   }
 
   componentWillUpdate() {
@@ -14,18 +15,20 @@ class Modal extends Component {
   }
 
   render() {
+    const { show, clickedBackDrop, children } = this.props;
     const modalAnimation = {
-      transform: this.props.show ? 'translateX(0)' : 'translateY(-100vh)',
-      opacity: this.props.show ? '1' : '0'
-    }
+      transform: show ? 'translateX(0)' : 'translateY(-100vh)',
+      opacity: show ? '1' : '0',
+    };
+
     return (
       <Aux>
-        <BackDrop show={this.props.show} clickedBackDrop={this.props.clickedBackDrop} />
+        <BackDrop show={show} clickedBackDrop={clickedBackDrop} />
         <div className={classes.Modal} style={modalAnimation}>
-          {this.props.children}
+          {children}
         </div>
       </Aux>
-    )
+    );
   }
 }
 

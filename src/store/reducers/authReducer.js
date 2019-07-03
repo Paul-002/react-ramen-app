@@ -5,8 +5,8 @@ const initialState = {
   userId: null,
   loading: null,
   error: false,
-  authRedirect: '/'
-}
+  authRedirect: '/',
+};
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -15,7 +15,7 @@ const authReducer = (state = initialState, action) => {
         ...state,
         loading: true,
         error: false,
-      }
+      };
 
     case actionTypes.AUTH_SUCCESS:
       return {
@@ -23,15 +23,15 @@ const authReducer = (state = initialState, action) => {
         token: action.idToken,
         userId: action.localId,
         loading: false,
-        error: false
-      }
+        error: false,
+      };
 
     case actionTypes.AUTH_FAIL:
       return {
         ...state,
         loading: false,
         error: action.error,
-      }
+      };
 
     case actionTypes.AUTH_LOGOUT:
       return {
@@ -39,16 +39,16 @@ const authReducer = (state = initialState, action) => {
         token: null,
         userId: null,
         userEmail: null,
-      }
+      };
 
     case actionTypes.REDIRECT_PATH:
       return {
         ...state,
-        authRedirect: action.path
-      }
+        authRedirect: action.path,
+      };
 
     default:
-      return state
+      return state;
   }
 };
 

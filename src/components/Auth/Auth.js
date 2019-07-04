@@ -12,6 +12,7 @@ import Button from '../Buttons/Button';
 import classes from './Auth.css';
 import * as actions from '../../store/actions/actionAuth';
 import Spinner from '../Spinner/Spinner';
+import { checkForValidity } from '../../shared/validation';
 
 class Auth extends Component {
   state = {
@@ -89,7 +90,7 @@ class Auth extends Component {
     let readyToSubmit = true;
 
     stateObjCopy[objName].value = evt.target.value;
-    stateObjCopy[objName].validation.valid = this.checkForValidity(
+    stateObjCopy[objName].validation.valid = checkForValidity(
       stateObjCopy[objName].value,
       stateObjCopy[objName].validation.isRequired,
       objName,
@@ -103,28 +104,6 @@ class Auth extends Component {
     this.setState({
       inputPattern: stateObjCopy, readyToSubmit,
     });
-  }
-
-  checkForValidity(value, required, id) {
-    let isValid = false;
-
-    if (!required) {
-      isValid = true;
-    }
-
-    switch (id) {
-      case 'email':
-        isValid = value.length >= 2 && value.trim() !== '' && /\S+@\S+\.\S+/.test(value);
-        break;
-
-      case 'password':
-        isValid = value.length >= 6 && value.trim() !== '';
-        break;
-
-      default:
-        alert('something wrong');
-    }
-    return isValid;
   }
 
   render() {

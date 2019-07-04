@@ -6,7 +6,7 @@ import BackDrop from '../../BackDrop/BackDrop';
 import Aux from '../../../hoc/auxiliary';
 
 const sideDrawer = (props) => {
-  const { show, clickedBackDrop, isAuth } = props;
+  const { show, closeSideDrawer, isAuth } = props;
   let openOrClosed = [classes.SideDrawer, classes.CloseTheSideDrawerAnim];
 
   if (show) {
@@ -15,8 +15,8 @@ const sideDrawer = (props) => {
 
   return (
     <Aux>
-      <BackDrop show={show} clickedBackDrop={clickedBackDrop} />
-      <div className={openOrClosed.join(' ')}>
+      <BackDrop show={show} clickedBackDrop={closeSideDrawer} />
+      <div className={openOrClosed.join(' ')} onClick={closeSideDrawer} >
         <div className={classes.Text}>
           {
             localStorage.getItem('userEmail')

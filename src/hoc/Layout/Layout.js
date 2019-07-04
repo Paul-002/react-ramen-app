@@ -13,7 +13,7 @@ class Layout extends Component {
     this.setState(prevState => ({ SideDrawer: !prevState.SideDrawer }));
   }
 
-  clickedBackDrop = () => {
+  closeSideDrawer = () => {
     this.setState({ SideDrawer: false });
   }
 
@@ -29,7 +29,7 @@ class Layout extends Component {
         <SideDrawer
           // eslint-disable-next-line react/destructuring-assignment
           show={this.state.SideDrawer}
-          clickedBackDrop={this.clickedBackDrop}
+          closeSideDrawer={this.closeSideDrawer}
           isAuth={isAuth}
         />
       </Aux>

@@ -5,10 +5,6 @@ import Button from '../Buttons/Button';
 // import { Link } from 'react-router-dom'
 
 class OrderSummary extends Component {
-  componentWillUpdate() {
-    // eslint-disable-next-line no-console
-    console.log('orderSummary will update');
-  }
 
   render() {
     const {
@@ -36,10 +32,8 @@ class OrderSummary extends Component {
           {ingredientsListData}
         </ul>
         <p className={classes.TotalCost}>
-          Total cost:
           <span className={classes.Price}>
-            {totalPrice.toFixed(2)}
-            zł
+            {`Total cost: ${totalPrice.toFixed(2)} zł`}
           </span>
         </p>
         <div className={classes.Buttons}>

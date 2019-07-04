@@ -38,9 +38,8 @@ class Checkout extends Component {
               className={classes.LiItem}
               key={item}
             >
-              {item}
-              <span className={classes.SpanItem}>:
-              {ramen[item]}
+              <span>
+                {`${item}: ${ramen[item]}`}
               </span>
             </li>
           );

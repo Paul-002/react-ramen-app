@@ -10,10 +10,6 @@ class Modal extends Component {
     return (nextProps.show !== this.props.show); // || (nextProps.children !== this.props.children)
   }
 
-  componentWillUpdate() {
-    console.log('modal will update');
-  }
-
   render() {
     const { show, clickedBackDrop, children } = this.props;
     const modalAnimation = {

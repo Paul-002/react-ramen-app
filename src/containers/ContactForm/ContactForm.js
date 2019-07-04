@@ -5,9 +5,8 @@ import Button from '../../components/Buttons/Button';
 import Spinner from '../../components/Spinner/Spinner';
 import Input from '../../components/Input/Input';
 import ErrorMessage from '../../components/ErrorLoadingMessage/ErrorMessage';
-
-// redux
 import * as actionCreators from '../../store/actions/actionCreators';
+import { checkForValidity } from '../../shared/validation';
 
 class ContactForm extends Component {
   state = {
@@ -134,62 +133,13 @@ class ContactForm extends Component {
 
     this.props.axiosPostOrderHandler(contact, this.props.token);
   }
-  /* first solution for complex inputs
-
-    checkForValidity(value, required, id) {
-      let isValid = false;
-
-      if (!required) {
-        return isValid = true;
-      }
-
-      let whitespaces = value.trim() !== '';
-      let minLength = value.length >= 2
-
-      switch (id) {
-        case 'name':
-          isValid = whitespaces && minLength
-          break;
-        case 'surname':
-          isValid = whitespaces && minLength
-          break;
-
-        case 'email':
-          isValid = /\S+@\S+\.\S+/.test(value)
-          break;
-
-        case 'Street':
-          isValid = whitespaces && minLength
-          break;
-
-        case 'City':
-          isValid = whitespaces && minLength
-          break;
-
-        default:
-        alert('something wrong');
-      }
-      return isValid;
-    }
-    */
-
-  checkForValidity(value, required, id) {
-    let isValid = false;
-
-    if (!required) {
-      return isValid = true;
-    }
-
-    id === 'email' ? isValid = /\S+@\S+\.\S+/.test(value) : isValid = value.trim() !== '' && value.length >= 2;
-    return isValid;
-  }
 
   onChangeHandler = (evt, objName) => {
     const stateObjCopy = JSON.parse(JSON.stringify(this.state.inputPattern)); // obj deep clone
     let readyToSubmit = true;
 
     stateObjCopy[objName].value = evt.target.value;
-    stateObjCopy[objName].validation.valid = this.checkForValidity(stateObjCopy[objName].value, stateObjCopy[objName].validation.isRequired, objName);
+    stateObjCopy[objName].validation.valid = checkForValidity(stateObjCopy[objName].value, stateObjCopy[objName].validation.isRequired, objName);
     stateObjCopy[objName].validation.touch = true;
 
     for (const objNames in stateObjCopy) {

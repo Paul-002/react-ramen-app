@@ -14,15 +14,13 @@ import orderReducer from './store/reducers/orderReducer';
 import authReducer from './store/reducers/authReducer';
 
 const logger = store => next => (action) => {
-  // eslint-disable-next-line no-console
-  console.log('[Middleware] Dispatching', action);
   const result = next(action);
-  // eslint-disable-next-line no-console
-  console.log('[Middleware] nexState', store.getState());
   return result;
 };
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = process.env.NODE_ENV === 'development'
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+  : null || compose;
 
 const combinedReducers = combineReducers({
   ramenData: ramenReducer,

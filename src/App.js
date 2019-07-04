@@ -28,6 +28,7 @@ class App extends Component {
         <Switch>
           <Route path="/my-orders" component={MyOrders} />
           <Route path="/check-before-buy" component={Checkout} />
+          <Route path="/sign" component={Auth} />
           <Route path="/logout" component={Logout} />
           <Route path="/" exact component={RamenBuilder} />
           <Redirect to="/" />

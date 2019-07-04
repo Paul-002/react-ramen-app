@@ -4,7 +4,7 @@
 }
 
 .Background {
-  background-color: hsl(0, 0%, 5%);
+  background-image: url('./assets/background-ramen-min.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;

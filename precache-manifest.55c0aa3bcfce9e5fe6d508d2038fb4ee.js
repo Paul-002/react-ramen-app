@@ -8,19 +8,19 @@ self.__precacheManifest = [
     "url": "/react-ramen-app/static/js/runtime~main.52c384e9.js"
   },
   {
-    "revision": "eeb19b865984684203e5",
-    "url": "/react-ramen-app/static/js/main.eeb19b86.chunk.js"
+    "revision": "b20c8ddc505ea7dbd3b8",
+    "url": "/react-ramen-app/static/js/main.b20c8ddc.chunk.js"
   },
   {
     "revision": "cc9905680c5ca7e28b73",
     "url": "/react-ramen-app/static/js/2.cc990568.chunk.js"
   },
   {
-    "revision": "eeb19b865984684203e5",
+    "revision": "b20c8ddc505ea7dbd3b8",
     "url": "/react-ramen-app/static/css/main.f1bfd085.chunk.css"
   },
   {
-    "revision": "880df730252fbb116be2dc2f6f1be28a",
+    "revision": "5f7507ded11e1a5874b0efe568f25920",
     "url": "/react-ramen-app/index.html"
   }
 ];

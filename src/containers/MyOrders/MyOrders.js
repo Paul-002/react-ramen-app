@@ -61,7 +61,7 @@ class MyOrders extends Component {
               There is no orders yet.
               <br />
               <br />
-              Go to the Homepage for create your favorite ramen!
+              Go to the homepage for create your favorite ramen!
             </p>
           </div>
         );

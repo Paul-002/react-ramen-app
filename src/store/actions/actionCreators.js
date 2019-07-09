@@ -78,7 +78,7 @@ export const axiosGetIngredients = () => (dispatch) => {
       dispatch(setAxiosIngredients(response.data));
     })
     .catch((error) => {
-      dispatch(errorAxiosIngredients(error)); // fix that
+      dispatch(errorAxiosIngredients(error));
     });
 };
 
@@ -88,7 +88,7 @@ export const axiosPostOrder = (contact, token) => (dispatch) => {
       dispatch(postSuccess(response));
     })
     .catch((error) => {
-      dispatch(postFail(true)); // fix that
+      dispatch(postFail(true));
     });
 };
 
@@ -98,6 +98,6 @@ export const axiosGetOrderCards = (token, userId) => (dispatch) => {
       dispatch(getOrderCardsSuccess(response));
     })
     .catch((error) => {
-      dispatch(getOrderCardsFail(true)); // fix that
+      dispatch(getOrderCardsFail(true));
     });
 };

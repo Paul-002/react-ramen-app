@@ -46,10 +46,8 @@ class App extends Component {
 
     return (
       <Aux>
-        <div className={classes.Background}>
-          <Layout />
-          {isAuth}
-        </div>
+        <Layout />
+        {isAuth}
       </Aux>
     );
   }

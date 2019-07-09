@@ -1,14 +1,14 @@
 {
-  "main.css": "/react-ramen-app/static/css/main.f1bfd085.chunk.css",
-  "main.js": "/react-ramen-app/static/js/main.b20c8ddc.chunk.js",
-  "main.js.map": "/react-ramen-app/static/js/main.b20c8ddc.chunk.js.map",
+  "main.css": "/react-ramen-app/static/css/main.d177881b.chunk.css",
+  "main.js": "/react-ramen-app/static/js/main.df63cb92.chunk.js",
+  "main.js.map": "/react-ramen-app/static/js/main.df63cb92.chunk.js.map",
   "runtime~main.js": "/react-ramen-app/static/js/runtime~main.52c384e9.js",
   "runtime~main.js.map": "/react-ramen-app/static/js/runtime~main.52c384e9.js.map",
-  "static/js/2.cc990568.chunk.js": "/react-ramen-app/static/js/2.cc990568.chunk.js",
-  "static/js/2.cc990568.chunk.js.map": "/react-ramen-app/static/js/2.cc990568.chunk.js.map",
+  "static/js/2.4afbff10.chunk.js": "/react-ramen-app/static/js/2.4afbff10.chunk.js",
+  "static/js/2.4afbff10.chunk.js.map": "/react-ramen-app/static/js/2.4afbff10.chunk.js.map",
   "index.html": "/react-ramen-app/index.html",
-  "precache-manifest.55c0aa3bcfce9e5fe6d508d2038fb4ee.js": "/react-ramen-app/precache-manifest.55c0aa3bcfce9e5fe6d508d2038fb4ee.js",
+  "precache-manifest.a0327ce71af0c4d3397cb09db919a4db.js": "/react-ramen-app/precache-manifest.a0327ce71af0c4d3397cb09db919a4db.js",
   "service-worker.js": "/react-ramen-app/service-worker.js",
-  "static/css/main.f1bfd085.chunk.css.map": "/react-ramen-app/static/css/main.f1bfd085.chunk.css.map",
+  "static/css/main.d177881b.chunk.css.map": "/react-ramen-app/static/css/main.d177881b.chunk.css.map",
   "static/media/App.css": "/react-ramen-app/static/media/background-ramen-min.708984a4.jpg"
 }

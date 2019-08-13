@@ -68,7 +68,7 @@ class Checkout extends Component {
         </div>
         <div className={classes.ButtonsContainer}>
           <p>
-            <Button clicked={this.backViev} btn="Back">
+            <Button clicked={this.backView} btn="Back">
               Back to homepage
             </Button>
           </p>

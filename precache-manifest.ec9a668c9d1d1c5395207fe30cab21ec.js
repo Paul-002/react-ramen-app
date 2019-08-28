@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "390e8281b78a824abd9a",
-    "url": "/react-ramen-app/static/css/main.df9477e4.chunk.css"
+    "revision": "1aa8e03e1f80f23caf19",
+    "url": "/react-ramen-app/static/css/main.c2a3599a.chunk.css"
   },
   {
-    "revision": "390e8281b78a824abd9a",
-    "url": "/react-ramen-app/static/js/main.390e8281.chunk.js"
+    "revision": "1aa8e03e1f80f23caf19",
+    "url": "/react-ramen-app/static/js/main.1aa8e03e.chunk.js"
   },
   {
     "revision": "52c384e98668941588fc",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/react-ramen-app/static/media/background-ramen-min.708984a4.jpg"
   },
   {
-    "revision": "38c908f010ca24d68e418d5f199a4f7d",
+    "revision": "4ac9582d09ee0e0131c8cf4bcd8a797f",
     "url": "/react-ramen-app/index.html"
   }
 ];

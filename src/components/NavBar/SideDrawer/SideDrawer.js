@@ -9,6 +9,26 @@ const sideDrawer = (props) => {
   const { show, closeSideDrawer, isAuth } = props;
   let openOrClosed = [classes.SideDrawer, classes.CloseTheSideDrawerAnim];
 
+  const loginStatus = () => {
+    const userEmail = localStorage.getItem('userEmail');
+
+    return userEmail
+    ?
+      <span>
+        Hello user! <br />
+        You are logged as <br />
+          {
+            userEmail.length >= 17
+            ? userEmail.substring(0,17) + '...'
+            : userEmail
+          }
+      </span>
+    : <span> 
+        Welcome guest. <br />
+        Please sign in/up
+      </span>
+  }
+
   if (show) {
     openOrClosed = [classes.SideDrawer, classes.OpenTheSideDrawerAnim];
   }
@@ -18,11 +38,7 @@ const sideDrawer = (props) => {
       <BackDrop show={show} clickedBackDrop={closeSideDrawer} />
       <div className={openOrClosed.join(' ')} onClick={closeSideDrawer} >
         <div className={classes.Text}>
-          {
-            localStorage.getItem('userEmail')
-              ? <span> Hello user! <br /> {localStorage.getItem('userEmail')} </span>
-              : <span> Welcome guest. <br /> Please sign in/up </span>
-          }
+        {loginStatus()}
         </div>
         <nav className={classes.NavItemsContainer}>
           <NavItems isAuth={isAuth} />

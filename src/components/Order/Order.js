@@ -19,8 +19,7 @@ const order = (props) => {
       <p>
         Name:
         <b>
-          {props.name}
-          {props.surname}
+          {`${props.name} ${props.surname}`}
         </b>
       </p>
       <p>
@@ -50,7 +49,7 @@ const order = (props) => {
       <p>
         Total price:
         <b>
-          {props.totalPrice}
+          {`${props.totalPrice} zł`}
         </b>
       </p>
       <p>

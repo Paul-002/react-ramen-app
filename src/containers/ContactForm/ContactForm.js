@@ -126,7 +126,7 @@ class ContactForm extends Component {
 
     const contact = {
       ingredients: this.props.ramen,
-      totalPrice: this.props.totalPrice,
+      totalPrice: this.props.totalPrice.toFixed(2),
       contactInfo: stateValues,
       userId: this.props.userId,
     };

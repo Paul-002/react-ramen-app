@@ -58,10 +58,10 @@ class MyOrders extends Component {
         orderCard = (
           <div className={classes.EmptyOrderCard}>
             <p>
-              There is no orders yet.
+              There are no orders yet.
               <br />
               <br />
-              Go to homepage for create your favorite ramen!
+              Go to the homepage to create your favorite ramen!
             </p>
           </div>
         );

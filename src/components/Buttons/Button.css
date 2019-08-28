@@ -27,15 +27,24 @@
   background-color: #b40b0b;
 }
 
-.Swich {
+.Switch {
   background-color: #edf116;
 }
 
-.Swich:hover {
-  background-color: #b4a90b;
+/* solution for sticky hover on mobile */
+@media (hover: hover) {
+  .Switch:hover {
+    background-color: #e3cd05;
+    transform: scale(1.2)
+  }
 }
 
-.CustomSwich {
+.Switch:active {
+  transform: scale(0.98);
+}
+
+
+.CustomSwitch {
   color: black;
   margin-left: 20px;
 }

@@ -6,7 +6,7 @@ import Aux from '../../hoc/auxiliary';
 const TotalCost = props => (
   <Aux>
     <p className={classes.Sum}>
-      Total cost: {props.totalPrice.toFixed(2)} zł
+      {`Total cost: ${props.totalPrice.toFixed(2)} zł`}
     </p>
   </Aux>
 );

@@ -2,16 +2,18 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  overflow: scroll;
 	margin: 10px;
 	padding: 15px;
 	min-width: 260px;
 	border-radius: 15px;
 	background-color: rgba(255, 255, 255, 0.9);
-	box-shadow: 2px 2px 2px dimgray
+	box-shadow: 2px 2px 2px dimgray;
 }
 
 .OrderCard p {
-	padding: 5px;
+  padding: 5px;
+  white-space: nowrap;
 }
 
 .OrderCard p:last-child {
@@ -31,4 +33,12 @@
 
 .OrderCard p b{
 	margin-left: 5px;
+}
+
+/* media for desktop */
+
+@media (min-width: 600px) {
+  .OrderCard {
+    overflow: visible;
+  }
 }

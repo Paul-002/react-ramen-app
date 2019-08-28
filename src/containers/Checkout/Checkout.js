@@ -54,10 +54,9 @@ class Checkout extends Component {
           <div className={classes.ContentContainer}>
             <div className={classes.TextContainer}>
               <h2>Great! :)</h2>
-              <h2>Only one step to order your favourite ramen!</h2>
+              <h2>Only one step to order your favorite ramen!</h2>
               <h5>
-                Please check the ingredients below and press confirm button to
-                show contact form.
+                Please check the ingredients below and press confirm button to show the contact form.
               </h5>
               <div className={classes.ArrowContainer}>
                 <span className={classes.Arrow} />
@@ -74,7 +73,7 @@ class Checkout extends Component {
           </p>
           <p>
             <Button clicked={this.goForm} btn="Continue">
-              Show me form!
+              Continue
             </Button>
           </p>
         </div>

@@ -107,7 +107,6 @@ class Auth extends Component {
   }
 
   render() {
-    // destructuring obj
     const { inputPattern, signUp } = this.state;
     const {
       loading, error, error: { message }, isAuth, authRedirect,
@@ -160,10 +159,10 @@ class Auth extends Component {
           <div className={classes.SignInOrUpMessage}><b>{signUp ? 'Sign up' : 'Sign in'}</b></div>
           <Button
             clicked={this.bindButton}
-            btn="Swich"
-            customStyle="CustomSwich"
+            btn="Switch"
+            customStyle="CustomSwitch"
           >
-            &#8646; Swich
+            &#8646; Switch
           </Button>
         </div>
         {errorMessage}

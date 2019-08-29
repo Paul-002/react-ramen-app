@@ -1,49 +1,97 @@
-# Project Name
-> Here goes your awesome project description!
+# React-ramen-app
+Compose your favorite ramen. Choose ingredients from the list, enter details in the contact form, and submit your order!
+Want to check whether you have not mistaken the address, or entered the wrong phone number? Go to the tab "my orders" to check all the details.
 
-## Table of contents
+
+CSS Modules,
+Progressive enhancement - mobile first design and flexible layout,
+Database - Google Firebase platform,
+ES6+ syntax.
+
+
+The first project in which I used the React.js library.
+
+Understanding the functionality of reusable components,
+Learn about component lifecycle methods and how to use it,
+Build routing management on site. Navigating programmatically and lazy loading,
+Handling errors correctly with ES6 syntax promises,
+
+## About project 📋
 * [General info](#general-info)
 * [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
 * [Status](#status)
-* [Inspiration](#inspiration)
+* [Inspiration](#Inspiration)
 * [Contact](#contact)
 
-## General info
-Add more general information about project. What the purpose of the project is? Motivation?
+## General info ℹ️
+Ramen-app is a SPA based on React.js library. For all HTTP requests is responsible Axios client. For backend support, I used the Google Firebase platform.
 
-## Screenshots
-![Example screenshot](./img/screenshot.png)
+## Screenshots 🖼️
+<img style="float: left;" src="./repoImages/menu.jpg">
+<img style="float: left;" src="./repoImages/login.jpg">
+<img style="float: left;" src="./repoImages/nav.jpg">
+<img style="float: left;" src="./repoImages/checkout.jpg">
+<img style="float: left;" src="./repoImages/form.jpg">
+<img style="clear: both;" src="./repoImages/orders.jpg">
 
-## Technologies
-* Tech 1 - version 1.0
-* Tech 2 - version 2.0
-* Tech 3 - version 3.0
+## Technologies ⚙️
+* React.js - ^16.8.3
+* react-redux - ^7.0.3
+* redux-thunk - ^2.3.0
+* react-router - ^5.0.0
+* axios - ^0.18.1
+* webpack - ^4.28.3
 
-## Setup
-Describe how to install / setup your local environement / add link to demo version.
+## Setup 💻
+Before you are ready to run **ramen-app** you will need additional software installed on your computer.
 
-## Code Examples
-Show examples of usage:
-`put-your-code-here`
+### Node.js
+Version 10 or later is required. Download the Windows installer from the [Node.js downloads page.](https://nodejs.org/en/download/)
 
-## Features
-List of features ready and TODOs for future development
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
+## Instalation 🧐
+All commands need to be performed in either PowerShell or a Command Shell.
 
-To-do list:
-* Wow improvement to be done 1
-* Wow improvement to be done 2
+### 1. Clone the repository
+`git clone https://github.com/Paul-002/react-ramen-app.git`
 
-## Status
-Project is: _in progress_, _finished_, _no longer continue_ and why?
+### 2. Enter the directory
+`cd react-ramen-app/`
 
-## Inspiration
-Add here credits. Project inspired by..., based on...
+### 3. Install all dependencies
+`npm install`
 
-## Contact
-Created by [@Paul-002](https://github.com/Paul-002) - feel free to contact me!
+### 5. Start the development server:
+`npm start`
+
+### See the public [demo](https://paul-002.github.io/react-ramen-app/) of ramen-app! 
+
+## Features 🔥
+List of ready features
+* Routing with React Router,
+* Firebase Authentication and user database ,
+* Redux state managment,
+* Navigating programmatically.
+
+## Status 🤔
+Core functions are _no longer being developed_.
+
+## Inspiration 💡
+This app is inspired by React course - The Complete Guide by [@mschwarzmueller](https://github.com/mschwarzmueller).
+
+### Source of knowledge 📚
+* [React docs](https://en.reactjs.org/docs/getting-started.html)
+* [Redux docs](https://redux.js.org/introduction/getting-started)
+* [Firebase](https://firebase.google.com/docs/web/setup/)
+* [Cris Esplin Blog](https://howtofirebase.com/)
+
+...and many other websites like [youtube](https://www.youtube.com/), [egghead](https://egghead.io/) 
+(especially [Kent C. Dodds](https://github.com/kentcdodds) and [Dan Abramov](https://github.com/gaearon) tutorials)
+
+## License 📄
+This project is licensed under the MIT License
+
+## Contact 👋
+Created with ❤️ by [@Paul-002](https://github.com/Paul-002)

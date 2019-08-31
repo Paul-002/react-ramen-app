@@ -16,7 +16,7 @@ Learn about component lifecycle methods and how to use it,
 Build routing management on site. Navigating programmatically and lazy loading,
 Handling errors correctly with ES6 syntax promises,
 
-## About project 📋
+## About project :clipboard:
 * [General info](#general-info)
 * [Screenshots](#screenshots)
 * [Technologies](#technologies)
@@ -29,7 +29,7 @@ Handling errors correctly with ES6 syntax promises,
 ## General info ℹ️
 Ramen-app is a SPA based on React.js library. For all HTTP requests is responsible Axios client. For backend support, I used the Google Firebase platform.
 
-## Screenshots 🖼️
+## Screenshots :camera:
 <img style="float: left;" src="./repoImages/menu.jpg">
 <img style="float: left;" src="./repoImages/login.jpg">
 <img style="float: left;" src="./repoImages/nav.jpg">
@@ -37,7 +37,7 @@ Ramen-app is a SPA based on React.js library. For all HTTP requests is responsib
 <img style="float: left;" src="./repoImages/form.jpg">
 <img style="clear: both;" src="./repoImages/orders.jpg">
 
-## Technologies ⚙️
+## Technologies :gear:
 * React.js - ^16.8.3
 * react-redux - ^7.0.3
 * redux-thunk - ^2.3.0
@@ -45,13 +45,13 @@ Ramen-app is a SPA based on React.js library. For all HTTP requests is responsib
 * axios - ^0.18.1
 * webpack - ^4.28.3
 
-## Setup 💻
+## Setup :computer:
 Before you are ready to run **ramen-app** you will need additional software installed on your computer.
 
 ### Node.js
 Version 10 or later is required. Download the Windows installer from the [Node.js downloads page.](https://nodejs.org/en/download/)
 
-## Instalation 🧐
+## Instalation :floppy_disk:
 All commands need to be performed in either PowerShell or a Command Shell.
 
 ### 1. Clone the repository
@@ -68,20 +68,20 @@ All commands need to be performed in either PowerShell or a Command Shell.
 
 ### See the public [demo](https://paul-002.github.io/react-ramen-app/) of ramen-app! 
 
-## Features 🔥
+## Features :fire:
 List of ready features
 * Routing with React Router,
 * Firebase Authentication and user database ,
 * Redux state managment,
-* Navigating programmatically.
+* Navigating programmatically,
 
-## Status 🤔
+## Status :thinking:
 Core functions are _no longer being developed_.
 
-## Inspiration 💡
+## Inspiration :bulb:
 This app is inspired by React course - The Complete Guide by [@mschwarzmueller](https://github.com/mschwarzmueller).
 
-### Source of knowledge 📚
+### Source of knowledge :books:
 * [React docs](https://en.reactjs.org/docs/getting-started.html)
 * [Redux docs](https://redux.js.org/introduction/getting-started)
 * [Firebase](https://firebase.google.com/docs/web/setup/)
@@ -90,8 +90,8 @@ This app is inspired by React course - The Complete Guide by [@mschwarzmueller](
 ...and many other websites like [youtube](https://www.youtube.com/), [egghead](https://egghead.io/) 
 (especially [Kent C. Dodds](https://github.com/kentcdodds) and [Dan Abramov](https://github.com/gaearon) tutorials)
 
-## License 📄
+## License :page_facing_up:
 This project is licensed under the MIT License
 
-## Contact 👋
-Created with ❤️ by [@Paul-002](https://github.com/Paul-002)
+## Contact :wave:
+Created with :heart: by [@Paul-002](https://github.com/Paul-002)

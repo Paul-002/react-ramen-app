@@ -30,13 +30,15 @@ Handling errors correctly with ES6 syntax promises,
 Ramen-app is a SPA based on React.js library. For all HTTP requests is responsible Axios client. For backend support, I used the Google Firebase platform.
 
 ## Screenshots :camera:
-<div style="display: flex">
+<div style="display: flex; justify-content: space-around">
   <img src="./repoImages/menu.jpg">
   <img src="./repoImages/login.jpg">
-  <img src="./repoImages/nav.jpg">
 </div>
-<div style="display: flex">
+<div style="display: flex; justify-content: space-around">
+  <img src="./repoImages/nav.jpg">
   <img src="./repoImages/checkout.jpg">
+</div>
+<div style="display: flex; justify-content: space-around">
   <img src="./repoImages/form.jpg">
   <img src="./repoImages/orders.jpg">
 </div>

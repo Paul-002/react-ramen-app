@@ -33,33 +33,33 @@ Ramen-app is a SPA based on React.js library. For all HTTP requests is responsib
 <div style="display: flex">
   <div style="display: flex; flex-direction: column; margin: 0 auto;">
     <h3>App menu</h3>
-      <img src="./repoImages/menu.jpg">
+      <img width="300" height="633" src="./repoImages/menu.jpg">
     </div>
   <div style="margin: 0 auto">
     <h3>Authentication page</h3>
-      <img style="margin: 0 auto" src="./repoImages/login.jpg">
+      <img width="300" height="633" style="margin: 0 auto" src="./repoImages/login.jpg">
   </div>
 </div>
 
 <div style="display: flex">
   <div style="display: flex; flex-direction: column; margin: 0 auto;">
     <h3>Mobile nav</h3>
-      <img src="./repoImages/nav.jpg">
+      <img width="300" height="633" src="./repoImages/nav.jpg">
     </div>
   <div style="margin: 0 auto">
     <h3>Checkout notification </h3>
-      <img style="margin: 0 auto" src="./repoImages/checkout.jpg">
+      <img width="300" height="633" style="margin: 0 auto" src="./repoImages/checkout.jpg">
   </div>
-</div>
+</div> 
 
 <div style="display: flex">
   <div style="display: flex; flex-direction: column; margin: 0 auto;">
     <h3>User order form</h3>
-      <img  src="./repoImages/form.jpg">
+      <img width="300" height="633" src="./repoImages/form.jpg">
     </div>
   <div style="margin: 0 auto">
     <h3>Orders page</h3>
-      <img src="./repoImages/orders.jpg">
+      <img width="300" height="633" src="./repoImages/orders.jpg">
   </div>
 </div>
 

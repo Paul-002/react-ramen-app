@@ -1,65 +1,68 @@
-# React-ramen-app
-Compose your favorite ramen. Choose ingredients from the list, enter details in the contact form, and submit your order!
+<center> <h1>React-ramen-app</h1> </center>
+
+Compose your favorite ramen! \
+Choose ingredients from the list, enter details in the contact form, and submit your order.
 Want to check whether you have not mistaken the address, or entered the wrong phone number? Go to the tab "my orders" to check all the details.
 
-
-CSS Modules,
-Progressive enhancement - mobile first design and flexible layout,
-Database - Google Firebase platform,
-ES6+ syntax.
-
-
-The first project in which I used the React.js library.
-
-Understanding the functionality of reusable components,
-Learn about component lifecycle methods and how to use it,
-Build routing management on site. Navigating programmatically and lazy loading,
-Handling errors correctly with ES6 syntax promises,
-
 ## About project :clipboard:
-* [General info](#general-info)
-* [Screenshots](#screenshots)
-* [Technologies](#technologies)
-* [Setup](#setup)
-* [Features](#features)
-* [Status](#status)
-* [Inspiration](#Inspiration)
-* [Contact](#contact)
+* [General info](#General-info-ℹ️)
+* [Features](#features-:fire:)
+* [Screenshots](#Screenshots-:camera:)
+* [Technologies](#technologies-:gear:)
+* [Setup](#setup-:computer:)
+* [Status](#status-:thinking:)
+* [Inspiration](#Inspiration-:bulb:)
+* [Contact](#contact-:wave:)
 
 ## General info ℹ️
 Ramen-app is a SPA based on React.js library. For all HTTP requests is responsible Axios client. For backend support, I used the Google Firebase platform.
+
+Components are styled by CSS Modules. RWD
+
+The project helped me to understand basic features in React.js including lifecycle components and potential functionality of reusable components. 
+
+As the project grew, there was a need to use the Redux library to centrally manage the state of the application.
+The project was branched and then merged to the master after making all necessary changes.
+
+## Features :fire:
+List of ready features
+* Routing with React Router,
+* Firebase Authentication and user database,
+* Redux state management,
+* Navigating programmatically,
+* Handling errors locally
 
 ## Screenshots :camera:
 <div style="display: flex">
   <div style="display: flex; flex-direction: column; margin: 0 auto;">
     <h3>App menu</h3>
-      <img width="300" height="633" src="./repoImages/menu.jpg">
+      <img width="300" height="703" src="./repoImages/menu.jpg">
     </div>
   <div style="margin: 0 auto">
     <h3>Authentication page</h3>
-      <img width="300" height="633" style="margin: 0 auto" src="./repoImages/login.jpg">
+      <img width="300" height="703" style="margin: 0 auto" src="./repoImages/login.jpg">
   </div>
 </div>
 
 <div style="display: flex">
   <div style="display: flex; flex-direction: column; margin: 0 auto;">
     <h3>Mobile nav</h3>
-      <img width="300" height="633" src="./repoImages/nav.jpg">
+      <img width="300" height="703" src="./repoImages/nav.jpg">
     </div>
   <div style="margin: 0 auto">
-    <h3>Checkout notification </h3>
-      <img width="300" height="633" style="margin: 0 auto" src="./repoImages/checkout.jpg">
+    <h3>Checkout notification</h3>
+      <img width="300" height="703" style="margin: 0 auto" src="./repoImages/checkout.jpg">
   </div>
 </div> 
 
 <div style="display: flex">
   <div style="display: flex; flex-direction: column; margin: 0 auto;">
     <h3>User order form</h3>
-      <img width="300" height="633" src="./repoImages/form.jpg">
+      <img width="300" height="703" src="./repoImages/form.jpg">
     </div>
   <div style="margin: 0 auto">
     <h3>Orders page</h3>
-      <img width="300" height="633" src="./repoImages/orders.jpg">
+      <img width="300" height="703" src="./repoImages/orders.jpg">
   </div>
 </div>
 
@@ -93,13 +96,6 @@ All commands need to be performed in either PowerShell or a Command Shell.
 `npm start`
 
 ### See the public [demo](https://paul-002.github.io/react-ramen-app/) of ramen-app! 
-
-## Features :fire:
-List of ready features
-* Routing with React Router,
-* Firebase Authentication and user database ,
-* Redux state managment,
-* Navigating programmatically,
 
 ## Status :thinking:
 Core functions are _no longer being developed_.

@@ -30,12 +30,16 @@ Handling errors correctly with ES6 syntax promises,
 Ramen-app is a SPA based on React.js library. For all HTTP requests is responsible Axios client. For backend support, I used the Google Firebase platform.
 
 ## Screenshots :camera:
-<img style="float: left;" src="./repoImages/menu.jpg">
-<img style="float: left;" src="./repoImages/login.jpg">
-<img style="float: left;" src="./repoImages/nav.jpg">
-<img style="float: left;" src="./repoImages/checkout.jpg">
-<img style="float: left;" src="./repoImages/form.jpg">
-<img style="clear: both;" src="./repoImages/orders.jpg">
+<div style="display: flex">
+  <img src="./repoImages/menu.jpg">
+  <img src="./repoImages/login.jpg">
+  <img src="./repoImages/nav.jpg">
+</div>
+<div style="display: flex">
+  <img src="./repoImages/checkout.jpg">
+  <img src="./repoImages/form.jpg">
+  <img src="./repoImages/orders.jpg">
+</div>
 
 ## Technologies :gear:
 * React.js - ^16.8.3
@@ -94,4 +98,4 @@ This app is inspired by React course - The Complete Guide by [@mschwarzmueller](
 This project is licensed under the MIT License
 
 ## Contact :wave:
-Created with :heart: by [@Paul-002](https://github.com/Paul-002)
+Created by [@Paul-002](https://github.com/Paul-002)

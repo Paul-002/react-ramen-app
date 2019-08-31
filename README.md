@@ -5,16 +5,16 @@ Choose ingredients from the list, enter details in the contact form, and submit 
 Want to check whether you have not mistaken the address, or entered the wrong phone number? Go to the tab "my orders" to check all the details.
 
 ## About project :clipboard:
-* [General info](#General-info-ℹ️)
-* [Features](#features-:fire:)
-* [Screenshots](#Screenshots-:camera:)
-* [Technologies](#technologies-:gear:)
-* [Setup](#setup-:computer:)
-* [Status](#status-:thinking:)
-* [Inspiration](#Inspiration-:bulb:)
-* [Contact](#contact-:wave:)
+* [General info](#General-info)
+* [Features](#features)
+* [Screenshots](#Screenshots)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Status](#status)
+* [Inspiration](#Inspiration)
+* [Contact](#contact)
 
-## General info ℹ️
+## General info
 Ramen-app is a SPA based on React.js library. For all HTTP requests is responsible Axios client. For backend support, I used the Google Firebase platform.
 
 Components are styled by CSS Modules. RWD
@@ -24,7 +24,7 @@ The project helped me to understand basic features in React.js including lifecyc
 As the project grew, there was a need to use the Redux library to centrally manage the state of the application.
 The project was branched and then merged to the master after making all necessary changes.
 
-## Features :fire:
+## Features
 List of ready features
 * Routing with React Router,
 * Firebase Authentication and user database,
@@ -32,7 +32,7 @@ List of ready features
 * Navigating programmatically,
 * Handling errors locally
 
-## Screenshots :camera:
+## Screenshots
 <div style="display: flex">
   <div style="display: flex; flex-direction: column; margin: 0 auto;">
     <h3>App menu</h3>
@@ -66,7 +66,7 @@ List of ready features
   </div>
 </div>
 
-## Technologies :gear:
+## Technologies
 * React.js - ^16.8.3
 * react-redux - ^7.0.3
 * redux-thunk - ^2.3.0
@@ -74,13 +74,13 @@ List of ready features
 * axios - ^0.18.1
 * webpack - ^4.28.3
 
-## Setup :computer:
+## Setup
 Before you are ready to run **ramen-app** you will need additional software installed on your computer.
 
 ### Node.js
 Version 10 or later is required. Download the Windows installer from the [Node.js downloads page.](https://nodejs.org/en/download/)
 
-## Instalation :floppy_disk:
+## Instalation
 All commands need to be performed in either PowerShell or a Command Shell.
 
 ### 1. Clone the repository
@@ -92,18 +92,18 @@ All commands need to be performed in either PowerShell or a Command Shell.
 ### 3. Install all dependencies
 `npm install`
 
-### 5. Start the development server:
+### 5. Start the development server
 `npm start`
 
 ### See the public [demo](https://paul-002.github.io/react-ramen-app/) of ramen-app! 
 
-## Status :thinking:
+## Status
 Core functions are _no longer being developed_.
 
-## Inspiration :bulb:
+## Inspiration
 This app is inspired by React course - The Complete Guide by [@mschwarzmueller](https://github.com/mschwarzmueller).
 
-### Source of knowledge :books:
+### Source of knowledge
 * [React docs](https://en.reactjs.org/docs/getting-started.html)
 * [Redux docs](https://redux.js.org/introduction/getting-started)
 * [Firebase](https://firebase.google.com/docs/web/setup/)
@@ -112,8 +112,8 @@ This app is inspired by React course - The Complete Guide by [@mschwarzmueller](
 ...and many other websites like [youtube](https://www.youtube.com/), [egghead](https://egghead.io/) 
 (especially [Kent C. Dodds](https://github.com/kentcdodds) and [Dan Abramov](https://github.com/gaearon) tutorials)
 
-## License :page_facing_up:
+## License
 This project is licensed under the MIT License
 
-## Contact :wave:
-Created by [@Paul-002](https://github.com/Paul-002)
+## Contact
+Created by :wave: [@Paul-002](https://github.com/Paul-002)

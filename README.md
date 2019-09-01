@@ -6,9 +6,9 @@ Want to check whether you have not mistaken the address, or entered the wrong ph
 
 ## About project :clipboard:
 * [General info](#General-info)
+* [Technologies](#technologies)
 * [Features](#features)
 * [Screenshots](#Screenshots)
-* [Technologies](#technologies)
 * [Setup](#setup)
 * [Status](#status)
 * [Inspiration](#Inspiration)
@@ -23,6 +23,14 @@ The project helped me to understand basic features in React.js including lifecyc
 
 As the project grew, there was a need to use the Redux library to centrally manage the state of the application.
 The project was branched and then merged to the master after making all necessary changes.
+
+## Technologies
+* React.js - ^16.8.3
+* react-redux - ^7.0.3
+* redux-thunk - ^2.3.0
+* react-router - ^5.0.0
+* axios - ^0.18.1
+* webpack - ^4.28.3
 
 ## Features
 List of ready features 🔥
@@ -49,14 +57,6 @@ Mobile nav            |  Checkout notification
 User order form            |  Orders page
 :-------------------------:|:-------------------------:
 ![User order form](./repoImages/form.jpg)  |  ![Orders page](./repoImages/orders.jpg)
-
-## Technologies
-* React.js - ^16.8.3
-* react-redux - ^7.0.3
-* redux-thunk - ^2.3.0
-* react-router - ^5.0.0
-* axios - ^0.18.1
-* webpack - ^4.28.3
 
 ## Setup
 Before you are ready to run **ramen-app** you will need additional software installed on your computer.

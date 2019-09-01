@@ -1,4 +1,4 @@
-<center> <h1>React-ramen-app</h1> </center>
+<h1 align="center">React-ramen-app</h1>
 
 Compose your favorite ramen! \
 Choose ingredients from the list, enter details in the contact form, and submit your order.
@@ -25,12 +25,12 @@ As the project grew, there was a need to use the Redux library to centrally mana
 The project was branched and then merged to the master after making all necessary changes.
 
 ## Features
-List of ready features
+List of ready features 🔥
 * Routing with React Router,
 * Firebase Authentication and user database,
 * Redux state management,
 * Navigating programmatically,
-* Handling errors locally
+* Handling errors locally.
 
 ## Screenshots
 

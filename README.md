@@ -33,38 +33,22 @@ List of ready features
 * Handling errors locally
 
 ## Screenshots
-<div style="display: flex">
-  <div style="display: flex; flex-direction: column; margin: 0 auto;">
-    <h3>App menu</h3>
-      <img width="300" height="703" src="./repoImages/menu.jpg">
-    </div>
-  <div style="margin: 0 auto">
-    <h3>Authentication page</h3>
-      <img width="300" height="703" style="margin: 0 auto" src="./repoImages/login.jpg">
-  </div>
-</div>
 
-<div style="display: flex">
-  <div style="display: flex; flex-direction: column; margin: 0 auto;">
-    <h3>Mobile nav</h3>
-      <img width="300" height="703" src="./repoImages/nav.jpg">
-    </div>
-  <div style="margin: 0 auto">
-    <h3>Checkout notification</h3>
-      <img width="300" height="703" style="margin: 0 auto" src="./repoImages/checkout.jpg">
-  </div>
-</div> 
+App menu            |  Authentication page
+:-------------------------:|:-------------------------:
+![App menu](./repoImages/login.jpg)  |  ![Authentication page](./repoImages/menu.jpg)
 
-<div style="display: flex">
-  <div style="display: flex; flex-direction: column; margin: 0 auto;">
-    <h3>User order form</h3>
-      <img width="300" height="703" src="./repoImages/form.jpg">
-    </div>
-  <div style="margin: 0 auto">
-    <h3>Orders page</h3>
-      <img width="300" height="703" src="./repoImages/orders.jpg">
-  </div>
-</div>
+&nbsp;
+
+Mobile nav            |  Checkout notification
+:-------------------------:|:-------------------------:
+![Mobile nav](./repoImages/nav.jpg)  |  ![Checkout notification](./repoImages/checkout.jpg)
+
+&nbsp;
+
+User order form            |  Orders page
+:-------------------------:|:-------------------------:
+![User order form](./repoImages/form.jpg)  |  ![Orders page](./repoImages/orders.jpg)
 
 ## Technologies
 * React.js - ^16.8.3

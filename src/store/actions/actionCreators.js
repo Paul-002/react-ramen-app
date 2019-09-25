@@ -95,9 +95,20 @@ export const axiosPostOrder = (contact, token) => (dispatch) => {
 export const axiosGetOrderCards = (token, userId) => (dispatch) => {
   axios.get(`/order.json?auth=${token}&orderBy="userId"&equalTo="${userId}"`)
     .then((response) => {
+      console.log("get order cards")
       dispatch(getOrderCardsSuccess(response));
     })
     .catch((error) => {
       dispatch(getOrderCardsFail(true));
+    });
+};
+
+export const axiosDeleteOrder = (token, orderId) => (dispatch) => {
+  axios.delete(`/order/${orderId}.json?auth=${token}`)
+    .then((response) => {
+      console.log('delete sucess')
+    })
+    .catch((error) => {
+      console.log(error)
     });
 };

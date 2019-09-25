@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Order from '../../components/Order/Order';
-import Spinner from '../../components/Spinner/Spinner';
-import classes from './MyOrders.css';
-import ErrorMessage from '../../components/ErrorLoadingMessage/ErrorMessage';
-import * as actionCreators from '../../store/actions/actionCreators';
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import Order from "../../components/Order/Order";
+import Spinner from "../../components/Spinner/Spinner";
+import classes from "./MyOrders.css";
+import ErrorMessage from "../../components/ErrorLoadingMessage/ErrorMessage";
+import * as actionCreators from "../../store/actions/actionCreators";
 
 class MyOrders extends Component {
   componentDidMount() {
@@ -14,25 +13,25 @@ class MyOrders extends Component {
   }
 
   render() {
-    const { cardsData, errorOrderCards } = this.props;
+    const { token, cardsData, errorOrderCards } = this.props;
     let orderCard;
     orderCard = <Spinner />;
 
     if (cardsData && Object.keys(cardsData).length) {
-      const fetchingData = [];
+      const fetchedData = [];
       // eslint-disable-next-line no-restricted-syntax
       for (const key in cardsData) {
         if (cardsData) {
-          fetchingData.push({
+          fetchedData.push({
             ...cardsData[key],
-            id: key,
+            id: key
           });
         }
       }
-
+      console.log(fetchedData)
       orderCard = (
         <div className={classes.OrdersCardContainer}>
-          {fetchingData.map(order => (
+          {fetchedData.map(order => (
             <Order
               name={order.contactInfo.name}
               surname={order.contactInfo.surname}
@@ -42,7 +41,10 @@ class MyOrders extends Component {
               payment={order.contactInfo.cardPayment}
               totalPrice={order.totalPrice}
               ingredients={order.ingredients}
+              orderId={order.id}
               key={order.id}
+              userId={order.userId}
+              token={token}
             />
           ))}
         </div>
@@ -52,7 +54,7 @@ class MyOrders extends Component {
     if (errorOrderCards) {
       orderCard = <ErrorMessage withBorder />;
     }
-
+    console.log(cardsData)
     if (cardsData) {
       if (!Object.keys(cardsData).length) {
         orderCard = (
@@ -67,12 +69,7 @@ class MyOrders extends Component {
         );
       }
     }
-
-    return (
-      <div>
-        {orderCard}
-      </div>
-    );
+    return <div>{orderCard}</div>;
   }
 }
 
@@ -80,11 +77,15 @@ const mapStateToProps = state => ({
   cardsData: state.orderData.cardsData,
   errorOrderCards: state.orderData.errorOrderCards,
   token: state.authData.token,
-  userId: state.authData.userId,
+  userId: state.authData.userId
 });
 
 const mapDispatchToProps = dispatch => ({
-  getOrderCards: (token, userId) => dispatch(actionCreators.axiosGetOrderCards(token, userId)),
+  getOrderCards: (token, userId) =>
+    dispatch(actionCreators.axiosGetOrderCards(token, userId))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyOrders);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyOrders);

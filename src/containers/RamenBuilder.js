@@ -34,7 +34,7 @@ class RamenBuilder extends Component {
     axiosGetIngredientsHandler();
   }
 
-  changeModalVievAndClearResponse = () => {
+  changeModalViewAndClearResponse = () => {
     const { isAuth, setRedirectPath, history: { push } } = this.props;
 
     if (!isAuth) {
@@ -45,7 +45,7 @@ class RamenBuilder extends Component {
     }
   }
 
-  changeBackDropViev = () => { this.setState({ showModal: false }); }
+  changeBackDropView = () => { this.setState({ showModal: false }); }
 
   orderTheRamen = () => {
     const { history: { push } } = this.props;
@@ -99,7 +99,7 @@ class RamenBuilder extends Component {
           />
           <SubmitButton
             disabled={disabledSubmitButton}
-            showModal={this.changeModalVievAndClearResponse}
+            showModal={this.changeModalViewAndClearResponse}
             onlyForUsers={isAuth}
           />
         </Aux>
@@ -108,7 +108,7 @@ class RamenBuilder extends Component {
       order = (
         <OrderSummary
           ingredientsList={ramen}
-          hideTheModal={this.changeBackDropViev}
+          hideTheModal={this.changeBackDropView}
           orderTheRamen={this.orderTheRamen}
           totalPrice={totalPrice}
         />
@@ -120,7 +120,7 @@ class RamenBuilder extends Component {
         <Modal
           // eslint-disable-next-line react/destructuring-assignment
           show={this.state.showModal}
-          clickedBackDrop={this.changeBackDropViev}
+          clickedBackDrop={this.changeBackDropView}
         >
           {order}
         </Modal>

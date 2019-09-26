@@ -129,6 +129,7 @@ class ContactForm extends Component {
       totalPrice: this.props.totalPrice.toFixed(2),
       contactInfo: stateValues,
       userId: this.props.userId,
+      orderDate: Date.now()
     };
 
     this.props.axiosPostOrderHandler(contact, this.props.token);

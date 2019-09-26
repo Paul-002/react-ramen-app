@@ -11,8 +11,13 @@ const order = props => {
 
   const deleteOrderModalHandler = (orderId) => {
     setView(!modalView);
-    props.deleteOrder(props.token, orderId);
+    props.deleteOrder(props.token, orderId, props.userId);
   };
+
+  const Timer = (time) => {
+    console.log(time)
+    return <b>something</b>
+  }
 
   const ingredientsList = Object.keys(props.ingredients).map(item =>
     props.ingredients[item] ? (
@@ -48,6 +53,10 @@ const order = props => {
           className={classes.DeleteOrderButton}
         />
         <p>
+          Order time:
+          <b><Timer time={props.orderDate} /></b>
+        </p>
+        <p>
           Name:
           <b>{`${props.name} ${props.surname}`}</b>
         </p>
@@ -80,8 +89,8 @@ const order = props => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  deleteOrder: (token, orderId) =>
-    dispatch(actionCreators.axiosDeleteOrder(token, orderId)),
+  deleteOrder: (token, orderId, userId) =>
+    dispatch(actionCreators.axiosDeleteOrder(token, orderId, userId)),
 });
 
 export default connect(null, mapDispatchToProps)(order);

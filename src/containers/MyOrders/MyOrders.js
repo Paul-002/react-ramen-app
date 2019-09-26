@@ -28,7 +28,7 @@ class MyOrders extends Component {
           });
         }
       }
-      console.log(fetchedData)
+
       orderCard = (
         <div className={classes.OrdersCardContainer}>
           {fetchedData.map(order => (
@@ -45,6 +45,7 @@ class MyOrders extends Component {
               key={order.id}
               userId={order.userId}
               token={token}
+              orderDate={order.orderDate}
             />
           ))}
         </div>
@@ -54,7 +55,7 @@ class MyOrders extends Component {
     if (errorOrderCards) {
       orderCard = <ErrorMessage withBorder />;
     }
-    console.log(cardsData)
+
     if (cardsData) {
       if (!Object.keys(cardsData).length) {
         orderCard = (

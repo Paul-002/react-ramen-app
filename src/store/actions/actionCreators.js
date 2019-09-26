@@ -56,9 +56,10 @@ export const getOrderCardsSuccess = response => ({
   // loading: true
 });
 
-export const getOrderCardsFail = error => ({
+export const getOrderCardsFail = (error, message) => ({
   type: actionTypes.FETCHING_ORDERS_FAIL,
   errorOrderCards: error,
+  errorMessage: message
 });
 
 // UI FEATURES
@@ -95,7 +96,6 @@ export const axiosPostOrder = (contact, token) => (dispatch) => {
 export const axiosGetOrderCards = (token, userId) => (dispatch) => {
   axios.get(`/order.json?auth=${token}&orderBy="userId"&equalTo="${userId}"`)
     .then((response) => {
-      console.log("get order cards")
       dispatch(getOrderCardsSuccess(response));
     })
     .catch((error) => {
@@ -103,12 +103,17 @@ export const axiosGetOrderCards = (token, userId) => (dispatch) => {
     });
 };
 
-export const axiosDeleteOrder = (token, orderId) => (dispatch) => {
+export const axiosDeleteOrder = (token, orderId, userId) => (dispatch) => {
   axios.delete(`/order/${orderId}.json?auth=${token}`)
     .then((response) => {
-      console.log('delete sucess')
+      if (response.status === 200) {
+        return axios.get(`/order.json?auth=${token}&orderBy="userId"&equalTo="${userId}"`)
+      }
+    })
+    .then((response) => {
+      dispatch(getOrderCardsSuccess(response));
     })
     .catch((error) => {
-      console.log(error)
-    });
+      dispatch(getOrderCardsFail(true))
+    })
 };

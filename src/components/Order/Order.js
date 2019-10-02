@@ -7,77 +7,145 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions/actionCreators";
 
 const order = props => {
-  const [modalView, setView] = useState(false);
+  console.log(props)
+  const {
+    contactInfo: { name, surname, email, street, city, cardPayment },
+    totalPrice, ingredients, id, userId, token, orderDate, index, deleteOrder
+  } = props;
 
-  const deleteOrderModalHandler = (orderId) => {
-    setView(!modalView);
-    props.deleteOrder(props.token, orderId, props.userId);
-  };
+  const [showModalView, setModalView] = useState(false);
+  const [createModalForCard, setCreate] = useState(false);
+  const [currentOrderId, setOrderId] = useState(null);
 
-  const Timer = (time) => {
-    console.log(time)
-    return <b>something</b>
+  const modalControlHandler = (orderId) => {
+    setCreate(true)
+    setModalView(!showModalView)
+    setOrderId(orderId)
   }
 
-  const ingredientsList = Object.keys(props.ingredients).map(item =>
-    props.ingredients[item] ? (
+  const timeLeft = (timeInMilis) => {
+    const timeCheck = Date.now() - timeInMilis;
+    if (timeCheck <= (1000 * 3600)) {
+      const timeLeftToHour = (1000 * 3600) - timeCheck;
+      const minutes = Math.floor(timeLeftToHour / (1000 * 60));
+      const seconds = ((timeLeftToHour % (1000 * 60)) / 1000).toFixed(0);
+      return (minutes + ":" + (seconds < 10 ? '0' : '') + seconds);
+    }
+    return false
+  }
+
+  const deleteOrderHandler = (currentOrderId) => {
+    setModalView(!showModalView);
+    deleteOrder(token, currentOrderId, userId);
+  };
+
+  const ingredientsList = Object.keys(ingredients).map(item =>
+    ingredients[item] ? (
       <li key={item}>
-        {item}: <b>{props.ingredients[item]}</b>
+        {item}: <b>{ingredients[item]}</b>
       </li>
     ) : null
   );
 
-  let cardPayment;
-  if (props.payment) {
-    cardPayment = "Yes";
+  let payment;
+  if (cardPayment) {
+    payment = "Yes";
   } else {
-    cardPayment = "No";
+    payment = "No";
+  }
+
+  let modalAction;
+  if (!createModalForCard) {
+    modalAction = null
+  }
+
+  if (createModalForCard) {
+    if (timeLeft(orderDate)) {
+      modalAction = (
+        <Modal show={showModalView} clickedBackDrop={() => setModalView(!showModalView)}>
+          <div className={classes.ModalMessage}>
+            <h2>Your order is being processed...</h2>
+            <p>The order will be delivered within one hour.
+          </p>
+            <div className={classes.AligningButtons}>
+              <p><b>{timeLeft(orderDate)}</b> minutes left...</p>
+              <Button
+                btn="Back"
+                clicked={() => setModalView(!showModalView)}
+              >
+                Back
+          </Button>
+            </div>
+          </div>
+        </Modal>
+      )
+    } else {
+      modalAction = (
+        <Modal show={showModalView} clickedBackDrop={() => setModalView(!showModalView)}>
+          <div className={classes.ModalMessage}>
+            <h2>Please confirm...</h2>
+            <p>Do you wanna delete the order?</p>
+            <div className={classes.AlignRight}>
+              <span>
+                <Button
+                  btn="Back"
+                  clicked={() => setModalView(!showModalView)}
+                >
+                  Back
+          </Button>
+              </span>
+              <Button
+                btn="Continue"
+                clicked={() => deleteOrderHandler(currentOrderId)}
+              >
+                Yes, delete
+          </Button>
+            </div>
+          </div>
+        </Modal>
+      )
+    }
   }
 
   return (
     <Aux>
-      <Modal show={modalView} clickedBackDrop={() => setView(!modalView)}>
-        <h1>Please confirm...</h1>
-        <p>Do you wanna delete the order?</p>
-        <Button btn="Back" clicked={() => setView(!modalView)}>
-          Back
-        </Button>
-        <Button btn="Continue" clicked={() => deleteOrderModalHandler(props.orderId)}>
-          Yes, I want to delete...
-        </Button>
-      </Modal>
-
-      <div className={classes.OrderCard}>
+      {modalAction}
+      <div
+        className={`
+          ${classes.OrderCard}
+          ${(Date.now() - orderDate) <= (1000 * 3600) ? classes.OrderBlue : classes.OrderGreen}
+          `
+        }
+      >
         <div
-          onClick={() => setView(!modalView)}
           className={classes.DeleteOrderButton}
+          onClick={() => modalControlHandler(id)}
         />
-        <p>
-          Order time:
-          <b><Timer time={props.orderDate} /></b>
-        </p>
+        <div className={classes.OrderCardListNumber}>
+          <b>#{index + 1}</b>
+        </div>
         <p>
           Name:
-          <b>{`${props.name} ${props.surname}`}</b>
+          <b>{`${name} ${surname}`}</b>
         </p>
         <p>
           E-mail:
-          <b>{props.email}</b>
+          <b>{email}</b>
         </p>
         <p>
           Street:
-          <b>{props.street}</b>
+          <b>{street}</b>
         </p>
         <p>
           City:
-          <b>{props.city}</b>
+          <b>{city}</b>
         </p>
         <p>
-          Card payment:<b>{cardPayment}</b>
+          Card payment:<b>{payment}</b>
         </p>
         <p>
           Total price:
-          <b>{`${props.totalPrice} zł`}</b>
+          <b>{`${totalPrice} zł`}</b>
         </p>
         <p>
           Ingredients:

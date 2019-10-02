@@ -20,6 +20,11 @@
   font-weight: bold;
 }
 
+.AlignCenter {
+  display: flex;
+  justify-content: center;
+}
+
 .BackToHome {
   list-style-type: none;
   color: red;

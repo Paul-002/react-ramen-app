@@ -3,11 +3,11 @@
   z-index: 500;
   background-color: rgba(255, 255, 255, 0.95);
   border-radius: 5%;
-  width: 70%;
+  width: 74%;
   border: 1px solid #ccc;
   box-shadow: 2px 2px 2px black;
   padding: 16px;
-  left: 15%;
+  left: 13%;
   top: 15%;
   box-sizing: border-box;
 	transition: all 0.3s ease-out;
@@ -22,6 +22,6 @@
 
 @media (max-width: 320px) {
   .Modal {
-    top: 0px;
+    top: 50px;
   }
 }

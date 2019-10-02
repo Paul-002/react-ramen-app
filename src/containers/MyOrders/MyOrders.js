@@ -14,38 +14,34 @@ class MyOrders extends Component {
 
   render() {
     const { token, cardsData, errorOrderCards } = this.props;
-    let orderCard;
-    orderCard = <Spinner />;
 
-    if (cardsData && Object.keys(cardsData).length) {
+    const convertToArrObjAndSort = (data) => {
       const fetchedData = [];
       // eslint-disable-next-line no-restricted-syntax
-      for (const key in cardsData) {
-        if (cardsData) {
+      for (const key in data) {
+        if (data) {
           fetchedData.push({
-            ...cardsData[key],
+            ...data[key],
             id: key
           });
         }
       }
+      fetchedData.sort((a, b) => b.orderDate - a.orderDate);
+      return fetchedData;
+    }
 
+    let orderCard;
+    orderCard = <Spinner />
+
+    if (cardsData && Object.keys(cardsData).length) {
       orderCard = (
         <div className={classes.OrdersCardContainer}>
-          {fetchedData.map(order => (
+          {convertToArrObjAndSort(cardsData).map((order, index) => (
             <Order
-              name={order.contactInfo.name}
-              surname={order.contactInfo.surname}
-              email={order.contactInfo.email}
-              street={order.contactInfo.street}
-              city={order.contactInfo.city}
-              payment={order.contactInfo.cardPayment}
-              totalPrice={order.totalPrice}
-              ingredients={order.ingredients}
-              orderId={order.id}
+              {...order}
               key={order.id}
-              userId={order.userId}
+              index={index}
               token={token}
-              orderDate={order.orderDate}
             />
           ))}
         </div>
@@ -59,13 +55,15 @@ class MyOrders extends Component {
     if (cardsData) {
       if (!Object.keys(cardsData).length) {
         orderCard = (
-          <div className={classes.EmptyOrderCard}>
-            <p>
-              There are no orders yet.
+          <div className={classes.AlignCenter}>
+            <div className={classes.EmptyOrderCard}>
+              <p>
+                There are no orders yet.
               <br />
-              <br />
-              Go to the homepage to create your favorite ramen!
+                <br />
+                Go to the homepage to create your favorite ramen!
             </p>
+            </div>
           </div>
         );
       }

@@ -12,6 +12,14 @@
   box-shadow: 2px 2px 2px dimgray;
 }
 
+.OrderBlue {
+  border: 2px solid lightseagreen;
+}
+
+.OrderGreen {
+  border: 2px solid rgb(101, 238, 101);
+}
+
 .OrderCard p {
   padding: 5px;
   white-space: nowrap;
@@ -47,6 +55,26 @@
   top: 15px;
   width: 25px;
   height: 25px;
+}
+
+.ModalMessage > p {
+  padding: 10px 0px 20px 0px;
+}
+
+.AligningButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.AlignRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.AlignRight span {
+  margin-right: 20px;
 }
 
 /* media for desktop */

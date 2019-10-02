@@ -37,8 +37,8 @@ class OrderSummary extends Component {
           </span>
         </p>
         <div className={classes.Buttons}>
-          <Button clicked={orderTheRamen} btn="Continue">Go to summary</Button>
           <Button clicked={hideTheModal} btn="Back">Back</Button>
+          <Button clicked={orderTheRamen} btn="Continue">Go to summary</Button>
         </div>
       </Aux>
     );

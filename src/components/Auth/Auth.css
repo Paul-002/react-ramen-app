@@ -36,7 +36,7 @@
   border-radius: 10px;
   box-shadow: 2px 2px 2px dimgray;
   font-size: 18px;
-  width: 70px;
+  max-width: 70%;
   text-align: center;
 }
 

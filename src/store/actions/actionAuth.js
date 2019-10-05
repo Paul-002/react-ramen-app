@@ -12,17 +12,18 @@ export const authSuccess = (idToken, localId) => ({
   localId,
 });
 
-export const authFail = error => ({
+export const authFail = errorMessage => ({
   type: actionTypes.AUTH_FAIL,
-  error: error.response.data.error,
+  //  reducer -> changing error loading to true
+  errorMessage: errorMessage
 });
 
 export const logout = () => {
   localStorage.clear();
   return {
     type: actionTypes.AUTH_LOGOUT,
-    // token to null
-    // userId to null
+    // reducer -> token to null
+    // reducer -> userId to null
   };
 };
 
@@ -73,6 +74,14 @@ export const auth = (inputValues, signInOrSignUp) => (dispatch) => {
       dispatch(timeLeftToLogout(response.data.expiresIn));
     })
     .catch((error) => {
-      dispatch(authFail(error));
+      if (error.response !== undefined) {
+        dispatch(authFail(error.response.data.error.message));
+      } else {
+        if (error.message === "Network Error") {
+          dispatch(authFail("No internet connection"));
+        } else {
+          dispatch(authFail("Auth problem..."));
+        }
+      }
     });
 };

@@ -109,7 +109,7 @@ class Auth extends Component {
   render() {
     const { inputPattern, signUp } = this.state;
     const {
-      loading, error, error: { message }, isAuth, authRedirect,
+      loading, error, errorMessage, isAuth, authRedirect,
     } = this.props;
 
     const configArray = [];
@@ -142,9 +142,9 @@ class Auth extends Component {
       form = <Spinner />;
     }
 
-    let errorMessage = null;
+    let errorMsg = null;
     if (error) {
-      errorMessage = <p className={classes.SignInOrUpMessage}>{message}</p>;
+      errorMsg = <p className={classes.SignInOrUpMessage}>{errorMessage}</p>;
     }
 
     let logInRedirect = null;
@@ -165,7 +165,7 @@ class Auth extends Component {
             &#8646; Switch
           </Button>
         </div>
-        {errorMessage}
+        {errorMsg}
         <form className={classes.Auth}>
           {form}
           <div className={classes.ButtonContainer}>
@@ -185,6 +185,7 @@ class Auth extends Component {
 const mapStateToProps = state => ({
   loading: state.authData.loading,
   error: state.authData.error,
+  errorMessage: state.authData.errorMessage,
   isAuth: state.authData.token !== null,
   authRedirect: state.authData.authRedirect,
   pickedIngredient: state.ramenData.pick,

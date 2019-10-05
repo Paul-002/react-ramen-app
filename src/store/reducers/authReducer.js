@@ -5,6 +5,7 @@ const initialState = {
   userId: null,
   loading: null,
   error: false,
+  errorMessage: null,
   authRedirect: '/',
 };
 
@@ -30,7 +31,8 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: action.error,
+        error: true,
+        errorMessage: action.errorMessage
       };
 
     case actionTypes.AUTH_LOGOUT:

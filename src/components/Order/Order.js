@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions/actionCreators";
 
 const order = props => {
-  console.log(props)
   const {
     contactInfo: { name, surname, email, street, city, cardPayment },
     totalPrice, ingredients, id, userId, token, orderDate, index, deleteOrder

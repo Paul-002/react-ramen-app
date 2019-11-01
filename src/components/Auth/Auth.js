@@ -22,16 +22,16 @@ class Auth extends Component {
         inputSettings: {
           inputType: 'input',
           type: 'email',
-          placeholder: 'Email',
+          placeholder: 'Email'
         },
         inputLabel: {
-          label: '',
+          label: ''
         },
         validation: {
           isRequired: true,
           valid: false,
-          touch: false,
-        },
+          touch: false
+        }
       },
 
       password: {
@@ -39,22 +39,22 @@ class Auth extends Component {
         inputSettings: {
           inputType: 'input',
           type: 'password',
-          placeholder: 'Password',
+          placeholder: 'Password'
         },
         inputLabel: {
-          label: '',
+          label: ''
         },
         validation: {
           isRequired: true,
           valid: false,
           touch: false,
-          minLength: 6,
-        },
-      },
+          minLength: 6
+        }
+      }
     },
     readyToSubmit: false,
-    signUp: true,
-  }
+    signUp: true
+  };
 
   componentDidMount() {
     const { pickedIngredient, authRedirect, setAuthRedirect } = this.props;
@@ -66,11 +66,11 @@ class Auth extends Component {
 
   bindButton = () => {
     this.setState(prevState => ({
-      signUp: !prevState.signUp,
+      signUp: !prevState.signUp
     }));
-  }
+  };
 
-  submitButton = (evt) => {
+  submitButton = evt => {
     const { signUp, inputPattern } = this.state;
 
     evt.preventDefault();
@@ -82,7 +82,7 @@ class Auth extends Component {
     }
 
     this.props.onAuth(inputValues, signInOrSignUp);
-  }
+  };
 
   onChangeHandler = (evt, objName) => {
     // eslint-disable-next-line react/no-access-state-in-setstate
@@ -93,7 +93,7 @@ class Auth extends Component {
     stateObjCopy[objName].validation.valid = checkForValidity(
       stateObjCopy[objName].value,
       stateObjCopy[objName].validation.isRequired,
-      objName,
+      objName
     );
     stateObjCopy[objName].validation.touch = true;
 
@@ -102,14 +102,19 @@ class Auth extends Component {
     }
 
     this.setState({
-      inputPattern: stateObjCopy, readyToSubmit,
+      inputPattern: stateObjCopy,
+      readyToSubmit
     });
-  }
+  };
 
   render() {
     const { inputPattern, signUp } = this.state;
     const {
-      loading, error, error: { message }, isAuth, authRedirect,
+      loading,
+      error,
+      error: { message },
+      isAuth,
+      authRedirect
     } = this.props;
 
     const configArray = [];
@@ -120,7 +125,7 @@ class Auth extends Component {
         value: inputPattern[key].value,
         config: inputPattern[key].inputSettings,
         inputLabel: inputPattern[key].inputLabel,
-        validation: inputPattern[key].validation,
+        validation: inputPattern[key].validation
       });
     }
 
@@ -144,7 +149,11 @@ class Auth extends Component {
 
     let errorMessage = null;
     if (error) {
-      errorMessage = <p className={classes.SignInOrUpMessage}>{message}</p>;
+      errorMessage = (
+        <p className={`${classes.AuthMessage} ${classes.ErrorBorder}`}>
+          {message}
+        </p>
+      );
     }
 
     let logInRedirect = null;
@@ -155,8 +164,10 @@ class Auth extends Component {
     return (
       <div className={classes.FormContainer}>
         {logInRedirect}
-        <div className={classes.SignInOrUpContainer}>
-          <div className={classes.SignInOrUpMessage}><b>{signUp ? 'Sign up' : 'Sign in'}</b></div>
+        <div className={classes.AuthContainer}>
+          <div className={classes.AuthMessage}>
+            <b>{signUp ? 'Sign up' : 'Sign in'}</b>
+          </div>
           <Button
             clicked={this.bindButton}
             btn="Switch"
@@ -166,13 +177,14 @@ class Auth extends Component {
           </Button>
         </div>
         {errorMessage}
+        <p className={classes.AuthMessage}>
+          Create new account or login as <b>test.test@gmail.com</b> with
+          password: <b>password</b>
+        </p>
         <form className={classes.Auth}>
           {form}
           <div className={classes.ButtonContainer}>
-            <Button
-              clicked={this.submitButton}
-              btn="SubmitButton"
-            >
+            <Button clicked={this.submitButton} btn="SubmitButton">
               {signUp ? 'Sign up' : 'Sign in'}
             </Button>
           </div>
@@ -187,12 +199,16 @@ const mapStateToProps = state => ({
   error: state.authData.error,
   isAuth: state.authData.token !== null,
   authRedirect: state.authData.authRedirect,
-  pickedIngredient: state.ramenData.pick,
+  pickedIngredient: state.ramenData.pick
 });
 
 const mapDispatchToProps = dispatch => ({
-  onAuth: (inputValues, signInOrSignUp) => dispatch(actions.auth(inputValues, signInOrSignUp)),
-  setAuthRedirect: () => dispatch(actions.redirectPath('/')),
+  onAuth: (inputValues, signInOrSignUp) =>
+    dispatch(actions.auth(inputValues, signInOrSignUp)),
+  setAuthRedirect: () => dispatch(actions.redirectPath('/'))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Auth);

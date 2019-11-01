@@ -24,19 +24,22 @@
   width: 100px;
 }
 
-.SignInOrUpContainer {
+.AuthContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.SignInOrUpMessage {
+.AuthMessage {
   background-color: rgba(255, 255, 255, 0.9);
   padding: 15px;
   border-radius: 10px;
   box-shadow: 2px 2px 2px dimgray;
   font-size: 18px;
-  width: 70px;
+  min-width: 150px;
   text-align: center;
 }
 
+.ErrorBorder {
+  border: 1px solid red;
+}

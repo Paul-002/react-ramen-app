@@ -39,7 +39,7 @@
 }
 
 .OrderCard li:before {
-  content: "\2713";
+  content: '\2713';
   margin: 0 1em;
   font-weight: bold;
 }
@@ -50,7 +50,8 @@
 
 .DeleteOrderButton {
   position: absolute;
-  background-image: url("../../assets//deleteOrder.png");
+  background-image: url('../../assets//deleteOrder.png');
+  cursor: pointer;
   right: 15px;
   top: 15px;
   width: 25px;

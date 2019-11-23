@@ -14,7 +14,6 @@ class Modal extends Component {
 
   render() {
     const { show, clickedBackDrop, children } = this.props;
-
     const animationTiming = {
       enter: 300,
       exit: 300,

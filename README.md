@@ -43,7 +43,7 @@ List of ready features 🔥
 - Firebase Authentication and user database,
 - Redux state management,
 - Navigating programmatically,
-- Handling errors locally.
+- Custom error handling.
 
 ## Screenshots
 
